@@ -1,10 +1,13 @@
+<?php
+    error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css?<?php echo time();?>">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <title>BookR</title>
 </head>
@@ -13,7 +16,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="img/logo.png" alt="">
+                    <img src="../assets/img/logo.png" alt="">
                 </span>
                 
                 <div class="text header-text">
@@ -28,7 +31,7 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="dashboard.html">
+                        <a href="../display/dashboard.html">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -64,7 +67,7 @@
         </div>
     </nav>
     <section class="home">
-        
+        <h1><span>Data User</span></h1> 
     </section>
 <script>
     let btn = document.querySelector(".toggle");

@@ -1,11 +1,14 @@
+<?php 
+    error_reporting(0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="../assets/css/style.css?<?php echo time();?>" rel="stylesheet"/>
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
     <title>BookR</title>
 </head>
 <body>
@@ -13,7 +16,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="img/logo.png" alt="">
+                    <img src="../assets/img/logo.png" alt=""/>
                 </span>
                 
                 <div class="text header-text">
@@ -34,7 +37,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="user.html">
+                        <a href="../user/user.html">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">My Profile</span>
                         </a>
@@ -64,7 +67,7 @@
         </div>
     </nav>
     <section class="home">
-        <div class="pict"><img src="img/pict 1.png" alt=""></div>
+        <div class="pict"><img src="../assets/img/pict 1.png" alt=""/></div>
         <div class="container">
             <table class="elementscontainer">
                 <tr>
@@ -81,6 +84,7 @@
         </div>
     </div>
     </section>
+
 <script>
     let btn = document.querySelector(".toggle");
     let sidebar = document.querySelector(".sidebar");
