@@ -1,4 +1,4 @@
-<?php
+<?php 
     error_reporting(0);
 ?>
 <!DOCTYPE html>
@@ -7,16 +7,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/style.css?<?php echo time();?>">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="../assets/css/style.css?<?php echo time();?>" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
     <title>BookR</title>
 </head>
 <body>
-    <nav class="sidebar close">
+    <nav class="sidebar">
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="../assets/img/logo.png" alt="">
+                    <img src="../assets/img/logo.png" alt=""/>
                 </span>
                 
                 <div class="text header-text">
@@ -31,27 +32,39 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="../display/dashboard.html">
+                        <a href="../display/dashboard.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-link active">
-                        <a href="user.html">
+                    <li class="nav-link">
+                        <a href="../data-user/user.php">
                             <i class='bx bx-user icon'></i>
-                            <span class="text nav-text">My Profile</span>
+                            <span class="text nav-text">User</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="../data-family/family.php">
                             <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">My Family</span>
+                            <span class="text nav-text">Family</span>
+                        </a>
+                    </li>
+                    <li class="nav-link active">
+                        <a href="kursus.php">
+                            <i class='bx bx-library icon'></i>
+                            <span class="text nav-text">Course</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-info-circle icon'></i>
-                            <span class="text nav-text">About</span>
+                        <a href="../data-ongoing/ongoing.php">
+                            <i class='bx bx-time-five icon'></i>
+                            <span class="text nav-text">Ongoing</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="../data-finished/finished.php">
+                            <i class='bx bx-check icon'></i>
+                            <span class="text nav-text">Finished</span>
                         </a>
                     </li>
                 </ul>
@@ -67,8 +80,9 @@
         </div>
     </nav>
     <section class="home">
-        <h1><span>Data User</span></h1> 
+        <h1><span>Data Kursus</span></h1>
     </section>
+
 <script>
     let btn = document.querySelector(".toggle");
     let sidebar = document.querySelector(".sidebar");

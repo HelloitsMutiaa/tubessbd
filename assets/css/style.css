@@ -170,7 +170,7 @@ header .image-text .header-text{
 }
 
 .sidebar .bottom-content{
-    margin-top: 80%;
+    margin: 100px auto;
     position: relative;
     display: block;
 }
@@ -181,6 +181,37 @@ header .image-text .header-text{
     height: 100vh;
     width: calc(100% - 250px);
     transition: var(--tran-05);
+}
+
+.home h1{
+    margin: 50px auto;
+    text-align: center;
+    font-size: 40px;
+    max-width: 600px;
+    position: relative;
+    color: var(--text-color);
+}
+
+.home h1::before{
+    content: "";
+    display: block;
+    width: 150px;
+    height: 4px;
+    background: var(--text-color);
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+
+.home h1::after{
+    content: "";
+    display: block;
+    width: 150px;
+    height: 4px;
+    background: var(--text-color);
+    position: absolute;
+    top: 50%;
+    right: 0;
 }
 
 .home img {

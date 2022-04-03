@@ -31,8 +31,8 @@
         <div class="menu_bar">
             <div class="menu">
                 <ul class="menu-links">
-                    <li class="nav-link active">
-                        <a href="dashboard.php">
+                    <li class="nav-link">
+                        <a href="../display/dashboard.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -55,8 +55,8 @@
                             <span class="text nav-text">Course</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a href="../data-ongoing/ongoing.php">
+                    <li class="nav-link active">
+                        <a href="ongoing.php">
                             <i class='bx bx-time-five icon'></i>
                             <span class="text nav-text">Ongoing</span>
                         </a>
@@ -80,22 +80,7 @@
         </div>
     </nav>
     <section class="home">
-        <div class="pict"><img src="../assets/img/pict 1.png" alt=""/></div>
-        <div class="container">
-            <table class="elementscontainer">
-                <tr>
-                    <td>
-                        <input type="text" placeholder="Search" class="search">
-                    </td>
-                    <td>
-                        <a href="#">
-                            <i class="bx bx-search"></i>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+        <h1><span>Data Ongoing</span></h1>
     </section>
 
 <script>

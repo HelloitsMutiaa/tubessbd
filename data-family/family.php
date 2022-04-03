@@ -31,8 +31,8 @@
         <div class="menu_bar">
             <div class="menu">
                 <ul class="menu-links">
-                    <li class="nav-link active">
-                        <a href="dashboard.php">
+                    <li class="nav-link">
+                        <a href="../display/dashboard.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -43,8 +43,8 @@
                             <span class="text nav-text">User</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a href="../data-family/family.php">
+                    <li class="nav-link active">
+                        <a href="family.php">
                             <i class='bx bx-heart icon'></i>
                             <span class="text nav-text">Family</span>
                         </a>
@@ -80,22 +80,7 @@
         </div>
     </nav>
     <section class="home">
-        <div class="pict"><img src="../assets/img/pict 1.png" alt=""/></div>
-        <div class="container">
-            <table class="elementscontainer">
-                <tr>
-                    <td>
-                        <input type="text" placeholder="Search" class="search">
-                    </td>
-                    <td>
-                        <a href="#">
-                            <i class="bx bx-search"></i>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+        <h1><span>Data Keluarga</span></h1>
     </section>
 
 <script>
