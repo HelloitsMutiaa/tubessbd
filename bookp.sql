@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Mar 2022 pada 18.07
+-- Waktu pembuatan: 04 Apr 2022 pada 06.02
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 8.0.11
 
@@ -76,6 +76,20 @@ CREATE TABLE `level` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `ongoing`
+--
+
+CREATE TABLE `ongoing` (
+  `id_ongoing` int(11) NOT NULL,
+  `id_child` int(11) DEFAULT NULL,
+  `id_course` int(11) DEFAULT NULL,
+  `tgl_mulai` date DEFAULT NULL,
+  `tgl_selesai` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `poin`
 --
 
@@ -92,10 +106,9 @@ CREATE TABLE `poin` (
 
 CREATE TABLE `selesai` (
   `id_selesai` int(11) NOT NULL,
-  `id_child` int(11) DEFAULT NULL,
-  `id_course` int(11) DEFAULT NULL,
-  `tgl_mulai` date DEFAULT NULL,
-  `tgl_selesai` date DEFAULT NULL
+  `id_ongoing` int(11) DEFAULT NULL,
+  `tgl_selesai` date DEFAULT NULL,
+  `poin` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -110,6 +123,7 @@ CREATE TABLE `user` (
   `username` varchar(100) NOT NULL,
   `email` varchar(70) NOT NULL,
   `pass_user` varchar(20) NOT NULL,
+  `asal_sekolah` varchar(100) DEFAULT NULL,
   `id_level` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -145,6 +159,14 @@ ALTER TABLE `level`
   ADD PRIMARY KEY (`id_level`);
 
 --
+-- Indeks untuk tabel `ongoing`
+--
+ALTER TABLE `ongoing`
+  ADD PRIMARY KEY (`id_ongoing`),
+  ADD KEY `id_child` (`id_child`),
+  ADD KEY `id_course` (`id_course`);
+
+--
 -- Indeks untuk tabel `poin`
 --
 ALTER TABLE `poin`
@@ -155,8 +177,7 @@ ALTER TABLE `poin`
 --
 ALTER TABLE `selesai`
   ADD PRIMARY KEY (`id_selesai`),
-  ADD KEY `id_child` (`id_child`),
-  ADD KEY `id_course` (`id_course`);
+  ADD KEY `id_ongoing` (`id_ongoing`);
 
 --
 -- Indeks untuk tabel `user`
@@ -194,6 +215,12 @@ ALTER TABLE `level`
   MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `ongoing`
+--
+ALTER TABLE `ongoing`
+  MODIFY `id_ongoing` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `selesai`
 --
 ALTER TABLE `selesai`
@@ -222,11 +249,17 @@ ALTER TABLE `course`
   ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
 
 --
+-- Ketidakleluasaan untuk tabel `ongoing`
+--
+ALTER TABLE `ongoing`
+  ADD CONSTRAINT `ongoing_ibfk_1` FOREIGN KEY (`id_child`) REFERENCES `childs` (`id_child`),
+  ADD CONSTRAINT `ongoing_ibfk_2` FOREIGN KEY (`id_course`) REFERENCES `course` (`id_course`);
+
+--
 -- Ketidakleluasaan untuk tabel `selesai`
 --
 ALTER TABLE `selesai`
-  ADD CONSTRAINT `selesai_ibfk_1` FOREIGN KEY (`id_child`) REFERENCES `childs` (`id_child`),
-  ADD CONSTRAINT `selesai_ibfk_2` FOREIGN KEY (`id_course`) REFERENCES `course` (`id_course`);
+  ADD CONSTRAINT `selesai_ibfk_1` FOREIGN KEY (`id_ongoing`) REFERENCES `ongoing` (`id_ongoing`);
 
 --
 -- Ketidakleluasaan untuk tabel `user`
