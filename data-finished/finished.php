@@ -81,6 +81,32 @@
     </nav>
     <section class="home">
         <h1><span>Data Finished</span></h1>
+        <table class="content-table">
+                <thead>
+                    <tr>
+                    <th>No.</th>
+                    <th>Nama Anak</th>
+                    <th>Judul</th>
+                    <th>Tanggal Mulai</th>
+                    <th>Tanggal Selesai</th>
+                    <th>Poin</th>
+                    <th>Pilihan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
+                    </td>
+                    </tr>
+                    </tbody>
+            </table>
     </section>
 
 <script>

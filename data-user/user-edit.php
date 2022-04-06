@@ -1,4 +1,4 @@
-<?php 
+<?php
     error_reporting(0);
 ?>
 <!DOCTYPE html>
@@ -7,9 +7,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../assets/css/style.css?<?php echo time();?>" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../assets/css/style.css?<?php echo time();?>">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <title>BookR</title>
 </head>
 <body>
@@ -17,7 +16,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="../assets/img/logo.png" alt=""/>
+                    <img src="../assets/img/logo.png" alt="">
                 </span>
                 
                 <div class="text header-text">
@@ -37,8 +36,8 @@
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a href="../data-user/user.php">
+                    <li class="nav-link active">
+                        <a href="user.php">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">User</span>
                         </a>
@@ -49,8 +48,8 @@
                             <span class="text nav-text">Family</span>
                         </a>
                     </li>
-                    <li class="nav-link active">
-                        <a href="kursus.php">
+                    <li class="nav-link">
+                        <a href="../data-kursus/kursus.php">
                             <i class='bx bx-library icon'></i>
                             <span class="text nav-text">Course</span>
                         </a>
@@ -80,36 +79,26 @@
         </div>
     </nav>
     <section class="home">
-        <h1><span>Data Kursus</span></h1>
-        <table class="content-table">
-                <thead>
-                    <tr>
-                    <th>No.</th>
-                    <th>Kode</th>
-                    <th>Judul</th>
-                    <th>Link Video</th>
-                    <th>Cover</th>
-                    <th>kategori</th>
-                    <th>Pilihan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href="#"><button class="btn-primary">Edit</button></a>
-                        <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
-                    </td>
-                    </tr>
-                    </tbody>
-            </table>
+        <h1><span>Edit Data User</span></h1> 
+        <fieldset>
+         <div class="form">
+             <input type="text" required>
+             <label for="">Nama</label>
+         </div>  
+         <div class="form">
+             <input type="text" required>
+             <label for="">Username</label>
+         </div>  
+         <div class="form">
+             <input type="text" required>
+             <label for="">Email</label>
+         </div>  
+         <div class="form">
+             <input type="text" required>
+             <label for="">Asal Sekolah</label>
+         </div>  
+         </fieldset> 
     </section>
-
 <script>
     let btn = document.querySelector(".toggle");
     let sidebar = document.querySelector(".sidebar");
