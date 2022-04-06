@@ -101,7 +101,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <a href="#"><button class="btn-primary">Edit</button></a>
+                        <a href="user-edit.php"><button class="btn-primary">Edit</button></a>
                         <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
                     </td>
                     </tr>
