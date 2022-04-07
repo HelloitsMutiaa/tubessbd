@@ -43,14 +43,14 @@
                             <span class="text nav-text">User</span>
                         </a>
                     </li>
-                    <li class="nav-link active">
-                        <a href="family.php">
+                    <li class="nav-link">
+                        <a href="../data-family/family.php">
                             <i class='bx bx-heart icon'></i>
                             <span class="text nav-text">Family</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a href="../data-kursus/kursus.php">
+                    <li class="nav-link active">
+                        <a href="kursus.php">
                             <i class='bx bx-library icon'></i>
                             <span class="text nav-text">Course</span>
                         </a>
@@ -80,34 +80,29 @@
         </div>
     </nav>
     <section class="home">
-        <h1><span>Data Keluarga</span></h1>
-        <table class="content-table">
-                <thead>
-                    <tr>
-                    <th>No.</th>
-                    <th>Nama</th>
-                    <th>Username</th>
-                    <th>Tanggal Lahir</th>
-                    <th>Ortu/Guru</th>
-                    <th>Asal Sekolah</th>
-                    <th>Pilihan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href="family-edit.php"><button class="btn-primary">Edit</button></a>
-                        <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
-                    </td>
-                    </tr>
-                    </tbody>
-            </table>
+        <h1><span>Tambah Kursus</span></h1>
+        <fieldset>
+         <div class="form">
+             <input type="text" required>
+             <label for="">Kode</label>
+         </div>  
+         <div class="form">
+             <input type="text" required>
+             <label for="">Judul</label>
+         </div>  
+         <div class="form">
+             <input type="link" required>
+             <label for="">Link Video</label>
+         </div> 
+         <div class="form">
+             <label for="file"><a class="btn-upload" rel="nofollow">Cover</a></label>
+             <input type="file" id="file">
+         </div> 
+         <div class="form">
+             <input type="text" required>
+             <label for="">Kategori</label>
+         </div>  
+         </fieldset> 
     </section>
 
 <script>

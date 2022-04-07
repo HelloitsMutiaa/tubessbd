@@ -102,12 +102,16 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <a href="#"><button class="btn-primary">Edit</button></a>
+                        <a href="kursus-edit.php"><button class="btn-primary">Edit</button></a>
                         <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
                     </td>
                     </tr>
                     </tbody>
             </table>
+
+            <div class="add">
+            <a href="kursus-tambah.php"><button class="btn-secondary">Tambah</button></a>
+            </div>
     </section>
 
 <script>
