@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Apr 2022 pada 06.02
+-- Waktu pembuatan: 07 Apr 2022 pada 06.29
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 8.0.11
 
@@ -33,6 +33,7 @@ CREATE TABLE `childs` (
   `child_uname` varchar(100) NOT NULL,
   `child_pass` varchar(20) NOT NULL,
   `child_lahir` date DEFAULT NULL,
+  `id_level` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -73,6 +74,16 @@ CREATE TABLE `level` (
   `nama_level` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `level`
+--
+
+INSERT INTO `level` (`id_level`, `nama_level`) VALUES
+(1, 'admin'),
+(2, 'ortu'),
+(3, 'guru'),
+(4, 'anak');
+
 -- --------------------------------------------------------
 
 --
@@ -94,8 +105,9 @@ CREATE TABLE `ongoing` (
 --
 
 CREATE TABLE `poin` (
-  `nominal` int(11) DEFAULT NULL,
-  `id_poin` int(11) NOT NULL
+  `id_child` int(11) DEFAULT NULL,
+  `id_selesai` int(11) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -136,7 +148,8 @@ CREATE TABLE `user` (
 --
 ALTER TABLE `childs`
   ADD PRIMARY KEY (`id_child`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_level` (`id_level`);
 
 --
 -- Indeks untuk tabel `course`
@@ -170,7 +183,8 @@ ALTER TABLE `ongoing`
 -- Indeks untuk tabel `poin`
 --
 ALTER TABLE `poin`
-  ADD PRIMARY KEY (`id_poin`);
+  ADD KEY `id_child` (`id_child`),
+  ADD KEY `id_selesai` (`id_selesai`);
 
 --
 -- Indeks untuk tabel `selesai`
@@ -212,7 +226,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT untuk tabel `level`
 --
 ALTER TABLE `level`
-  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_level` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `ongoing`
@@ -240,7 +254,8 @@ ALTER TABLE `user`
 -- Ketidakleluasaan untuk tabel `childs`
 --
 ALTER TABLE `childs`
-  ADD CONSTRAINT `childs_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `childs_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
+  ADD CONSTRAINT `childs_ibfk_2` FOREIGN KEY (`id_level`) REFERENCES `level` (`id_level`);
 
 --
 -- Ketidakleluasaan untuk tabel `course`
@@ -254,6 +269,13 @@ ALTER TABLE `course`
 ALTER TABLE `ongoing`
   ADD CONSTRAINT `ongoing_ibfk_1` FOREIGN KEY (`id_child`) REFERENCES `childs` (`id_child`),
   ADD CONSTRAINT `ongoing_ibfk_2` FOREIGN KEY (`id_course`) REFERENCES `course` (`id_course`);
+
+--
+-- Ketidakleluasaan untuk tabel `poin`
+--
+ALTER TABLE `poin`
+  ADD CONSTRAINT `poin_ibfk_1` FOREIGN KEY (`id_child`) REFERENCES `childs` (`id_child`),
+  ADD CONSTRAINT `poin_ibfk_2` FOREIGN KEY (`id_selesai`) REFERENCES `selesai` (`id_selesai`);
 
 --
 -- Ketidakleluasaan untuk tabel `selesai`
