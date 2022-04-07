@@ -5,5 +5,10 @@
     $pass = "";
     $database = "bookp";
 
-    $db = mysqli_connect($host, $user, $pass, $database) or die("Koneksi Database Gagal");
+    $dtb = mysqli_connect($host, $user, $pass, $database);
+
+    if(!$dtb)
+    {
+        die("Koneksi Gagal : " .mysqli_connect_error($dtb));
+    }
 ?>

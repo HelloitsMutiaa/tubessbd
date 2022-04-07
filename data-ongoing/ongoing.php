@@ -95,12 +95,29 @@
                 </thead>
                 <tbody>
                     <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo $no; ?></td>
+                    <td><? $data['child_name'] ?></td>
+                    <td><?php echo $data['course_title']?></td>
+                    <td><?php echo date('d-m-Y', strtotime($data['tgl_mulai']))?></td>
+                    <td>
+                        <?php 
+                        if(empty($data['tgl_selesai']))
+                        {
+                            echo "-";
+                        } else {
+                            echo date('d-m-Y', strtotime($data['tgl_selesai']));
+                        }
+                        ?>
+                    </td>
+                    <td><?php $status = '' ?>
+                    <?php if(empty($data['tgl_selesai'])): ?>
+                        Ongoing
+                    <?php $status = 'Ongoing' ?>
+                    <?php else : ?>
+                        Finished
+                    <?php $status = 'finished' ?>
+                    <?php endif ?>
+                    </td>
                     <td>
                         <a href="#"><button class="btn-primary">Edit</button></a>
                         <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
@@ -109,6 +126,9 @@
                     </tbody>
             </table>
     </section>
+    <?php
+    include "ongoing-list.php";
+    ?>
 
 <script>
     let btn = document.querySelector(".toggle");
