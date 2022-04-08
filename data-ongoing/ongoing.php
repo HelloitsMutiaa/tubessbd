@@ -1,6 +1,10 @@
 <?php 
     error_reporting(0);
 ?>
+<?php 
+    require "../includes/connect.php";
+    include "ongoing-list.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,23 +98,24 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach ($data as $on) : ?>
                     <tr>
-                    <td><?php echo $no; ?></td>
-                    <td><? $data['child_name'] ?></td>
-                    <td><?php echo $data['course_title']?></td>
-                    <td><?php echo date('d-m-Y', strtotime($data['tgl_mulai']))?></td>
+                    <td><?php echo $no ?></td>
+                    <td><?php echo $on['child_name'] ?></td>
+                    <td><?php echo $on['course_title']?></td>
+                    <td><?php echo date('d-m-Y',($on['tgl_mulai']))?></td>
                     <td>
                         <?php 
-                        if(empty($data['tgl_selesai']))
+                        if(empty($on['tgl_selesai']))
                         {
                             echo "-";
                         } else {
-                            echo date('d-m-Y', strtotime($data['tgl_selesai']));
+                            echo date('d-m-Y', strtotime($on['tgl_selesai']));
                         }
                         ?>
                     </td>
                     <td><?php $status = '' ?>
-                    <?php if(empty($data['tgl_selesai'])): ?>
+                    <?php if(empty($on['tgl_selesai'])): ?>
                         Ongoing
                     <?php $status = 'Ongoing' ?>
                     <?php else : ?>
@@ -123,12 +128,10 @@
                         <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
                     </td>
                     </tr>
+                    <?php endforeach ?>
                     </tbody>
             </table>
     </section>
-    <?php
-    include "ongoing-list.php";
-    ?>
 
 <script>
     let btn = document.querySelector(".toggle");

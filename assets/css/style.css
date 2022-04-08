@@ -223,11 +223,12 @@ header .image-text .header-text{
 }
 
 .home .content-table{
+    position: static;
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
     min-width: 1000px;
-    transform: translateX(15%);
+    margin: auto;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -297,7 +298,9 @@ header .image-text .header-text{
 }
 
 .add{
-    margin-left: 150px;
+    position: static;
+    margin: 25px 0;
+    transform: translateX(3%);
 }
 
 fieldset{
