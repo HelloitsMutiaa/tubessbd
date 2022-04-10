@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Apr 2022 pada 06.29
+-- Waktu pembuatan: 10 Apr 2022 pada 14.54
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 8.0.11
 
@@ -31,7 +31,7 @@ CREATE TABLE `childs` (
   `id_child` int(11) NOT NULL,
   `child_name` varchar(100) NOT NULL,
   `child_uname` varchar(100) NOT NULL,
-  `child_pass` varchar(20) NOT NULL,
+  `child_pass` varchar(40) NOT NULL,
   `child_lahir` date DEFAULT NULL,
   `id_level` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL
@@ -62,6 +62,16 @@ CREATE TABLE `kategori` (
   `id_kategori` int(11) NOT NULL,
   `kategori_nama` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `kategori_nama`) VALUES
+(1, 'Plants'),
+(2, 'Animals'),
+(3, 'Family'),
+(4, 'Schools');
 
 -- --------------------------------------------------------
 
@@ -101,18 +111,6 @@ CREATE TABLE `ongoing` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `poin`
---
-
-CREATE TABLE `poin` (
-  `id_child` int(11) DEFAULT NULL,
-  `id_selesai` int(11) DEFAULT NULL,
-  `total` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `selesai`
 --
 
@@ -133,9 +131,9 @@ CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `nama_user` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
-  `email` varchar(70) NOT NULL,
-  `pass_user` varchar(20) NOT NULL,
-  `asal_sekolah` varchar(100) DEFAULT NULL,
+  `email` varchar(80) NOT NULL,
+  `pass_user` varchar(40) NOT NULL,
+  `asal_sekolah` varchar(50) DEFAULT NULL,
   `id_level` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -180,13 +178,6 @@ ALTER TABLE `ongoing`
   ADD KEY `id_course` (`id_course`);
 
 --
--- Indeks untuk tabel `poin`
---
-ALTER TABLE `poin`
-  ADD KEY `id_child` (`id_child`),
-  ADD KEY `id_selesai` (`id_selesai`);
-
---
 -- Indeks untuk tabel `selesai`
 --
 ALTER TABLE `selesai`
@@ -208,19 +199,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `childs`
 --
 ALTER TABLE `childs`
-  MODIFY `id_child` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_child` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `course`
 --
 ALTER TABLE `course`
-  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `level`
@@ -232,7 +223,7 @@ ALTER TABLE `level`
 -- AUTO_INCREMENT untuk tabel `ongoing`
 --
 ALTER TABLE `ongoing`
-  MODIFY `id_ongoing` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ongoing` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `selesai`
@@ -244,7 +235,7 @@ ALTER TABLE `selesai`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -269,13 +260,6 @@ ALTER TABLE `course`
 ALTER TABLE `ongoing`
   ADD CONSTRAINT `ongoing_ibfk_1` FOREIGN KEY (`id_child`) REFERENCES `childs` (`id_child`),
   ADD CONSTRAINT `ongoing_ibfk_2` FOREIGN KEY (`id_course`) REFERENCES `course` (`id_course`);
-
---
--- Ketidakleluasaan untuk tabel `poin`
---
-ALTER TABLE `poin`
-  ADD CONSTRAINT `poin_ibfk_1` FOREIGN KEY (`id_child`) REFERENCES `childs` (`id_child`),
-  ADD CONSTRAINT `poin_ibfk_2` FOREIGN KEY (`id_selesai`) REFERENCES `selesai` (`id_selesai`);
 
 --
 -- Ketidakleluasaan untuk tabel `selesai`
