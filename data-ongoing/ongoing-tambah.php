@@ -84,57 +84,25 @@
         </div>
     </nav>
     <section class="home">
-        <h1><span>Data Ongoing</span></h1>
-        <table class="content-table">
-                <thead>
-                    <tr>
-                    <th>No.</th>
-                    <th>Nama Anak</th>
-                    <th>Judul</th>
-                    <th>Tanggal Mulai</th>
-                    <th>Tanggal Selesai</th>
-                    <th>Status</th>
-                    <th>Pilihan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($data as $on) : ?>
-                    <tr>
-                    <td><?php echo $no ?></td>
-                    <td><?php echo $on['child_name'] ?></td>
-                    <td><?php echo $on['course_title']?></td>
-                    <td><?php echo date('d-m-Y',($on['tgl_mulai']))?></td>
-                    <td>
-                        <?php 
-                        if(empty($on['tgl_selesai']))
-                        {
-                            echo "-";
-                        } else {
-                            echo date('d-m-Y', strtotime($on['tgl_selesai']));
-                        }
-                        ?>
-                    </td>
-                    <td><?php $status = '' ?>
-                    <?php if(empty($on['tgl_selesai'])): ?>
-                        Ongoing
-                    <?php $status = 'Ongoing' ?>
-                    <?php else : ?>
-                        Finished
-                    <?php $status = 'finished' ?>
-                    <?php endif ?>
-                    </td>
-                    <td>
-                        <a href="#"><button class="btn-primary">Edit</button></a>
-                        <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
-                    </td>
-                    </tr>
-                    <?php endforeach ?>
-                    </tbody>
-            </table>
-            <div class="add">
-            <a href="ongoing-tambah.php"><button class="btn-secondary">Tambah</button></a>
-            </div>
-    </section>
+    <h1><span>Tambah Ongoing</span></h1>
+        <fieldset>
+         <div class="form">
+             <input type="select" required>
+             <label for="">Nama Anak</label>
+         </div>  
+         <div class="form">
+             <input type="select" required>
+             <label for="">Judul</label>
+         </div>  
+         <div class="form">
+             <input type="text" id="date" name="date" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required>
+             <label for="date">Tanggal Mulai</label>
+         </div> 
+         <div class="form">
+             <input type="text" id="date" name="date" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required>
+             <label for="date">Tanggal Selesai</label>
+         </div> 
+         </fieldset> 
 
 <script>
     let btn = document.querySelector(".toggle");
