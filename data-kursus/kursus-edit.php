@@ -99,9 +99,15 @@
              <input type="file" id="file">
          </div> 
          <div class="form">
-             <input type="text" required>
-             <label for="">Kategori</label>
+         <select id="kategori" class="custom-select" name="kategori">
+             <option value = ""></option>
+            </select> 
+            <label for="kategori">Kategori</label>
          </div>  
+         <br/>
+         <div class="add2">
+             <a href="#"><button class="btn-secondary">Submit</button></a> 
+         </div>
          </fieldset> 
     </section>
 

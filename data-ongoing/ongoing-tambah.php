@@ -84,24 +84,32 @@
         </div>
     </nav>
     <section class="home">
-    <h1><span>Tambah Ongoing</span></h1>
+    <h1><span>Add Ongoing</span></h1>
         <fieldset>
          <div class="form">
-             <input type="select" required>
-             <label for="">Nama Anak</label>
+			 <select id="anak" class="custom-select" name="anak">
+             <option value = ""></option>
+            </select> 
+            <label for="anak">Nama Anak</label>
          </div>  
          <div class="form">
-             <input type="select" required>
-             <label for="">Judul</label>
+			 <select id="judul" class="custom-select" name="anak">
+             <option value = ""></option>
+            </select>
+            <label for="judul">Judul</label> 
          </div>  
          <div class="form">
-             <input type="text" id="date" name="date" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required>
+             <input type="text" id="date" name="date" class="tgl" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required>
              <label for="date">Tanggal Mulai</label>
          </div> 
          <div class="form">
              <input type="text" id="date" name="date" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required>
              <label for="date">Tanggal Selesai</label>
          </div> 
+         <br/>
+         <div class="add2">
+             <a href="#"><button class="btn-secondary">Submit</button></a> 
+         </div>
          </fieldset> 
 
 <script>

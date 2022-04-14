@@ -94,14 +94,11 @@
              <input type="text" required>
              <label for="">Tanggal Lahir</label>
          </div> 
-         <div class="form">
-             <input type="text" required>
-             <label for="">Nama Ortu/Wali</label>
-         </div> 
-         <div class="form">
-             <input type="text" required>
-             <label for="">Asal Sekolah</label>
-         </div>  
+         <br/>
+         <div class="add2">
+             <a href="#"><button class="btn-secondary">Submit</button></a> 
+         </div>
+         
          </fieldset> 
     </section>
 

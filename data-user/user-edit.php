@@ -97,6 +97,10 @@
              <input type="text" required>
              <label for="">Asal Sekolah</label>
          </div>  
+         <br/>
+         <div class="add2">
+             <a href="#"><button class="btn-secondary">Submit</button></a> 
+         </div>
          </fieldset> 
     </section>
 <script>
