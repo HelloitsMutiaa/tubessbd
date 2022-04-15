@@ -1,5 +1,6 @@
 <?php 
     error_reporting(0);
+    include "../includes/connect.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,6 +80,17 @@
             </div>
         </div>
     </nav>
+    <?php
+        $query = mysqli_query($dtb, "SELECT course.*, kategori.kategori_nama
+                                    FROM course
+                                    LEFT JOIN kategori ON kategori.id_kategori = course.id_kategori");
+        $data_kursus = array();
+        $no = 1;
+        while($row = mysqli_fetch_assoc($query))
+        {
+            $data_kursus[] = $row;
+        }
+    ?>
     <section class="home">
         <h1><span>Data Kursus</span></h1>
         <table class="content-table">
@@ -94,13 +106,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data_kursus as $kursus) :?>
                     <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?php echo $no++ ?></td>
+                    <td><?php echo $kursus['code_course'] ?></td>
+                    <td><?php echo $kursus['course_title'] ?></td>
+                    <td><?php echo $kursus['vid_course'] ?></td>
+                    <td><img src="cover/<?php echo $kursus['course_cover']?>"></td>
+                    <td><?php echo $kursus['kategori_nama'] ?></td>
+                    <?php endforeach?>
                     <td>
                         <a href="kursus-edit.php"><button class="btn-primary">Edit</button></a>
                         <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>

@@ -96,6 +96,14 @@
             </table>
         </div>
     </div>
+
+    <div class="images">
+        <div class="image-box">
+            <img src="" alt="">
+            <h6></h6>
+        </div>
+        </div>
+    </div>
     </section>
 
 <script>

@@ -1,5 +1,7 @@
 <?php 
     error_reporting(0);
+    include "../includes/connect.php";
+    include "kategori-list.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,36 +82,73 @@
         </div>
     </nav>
     <section class="home">
+        <form method="POST" enctype="multipart/form-data">
         <h1><span>Tambah Kursus</span></h1>
         <fieldset>
          <div class="form">
-             <input type="text" required>
+             <input type="text" name="kode" required>
              <label for="">Kode</label>
          </div>  
          <div class="form">
-             <input type="text" required>
+             <input type="text" name="judul" required>
              <label for="">Judul</label>
          </div>  
          <div class="form">
-             <input type="link" required>
+             <input type="link" name="link" required>
              <label for="">Link Video</label>
          </div> 
          <div class="form">
              <label for="file"><a class="btn-upload" rel="nofollow">Cover</a></label>
-             <input type="file" id="file">
+             <input type="file" id="file" name="cover">
          </div> 
          <div class="form">
              <select id="kategori" class="custom-select" name="kategori">
-             <option value = ""></option>
+             <?php foreach($data_kategori as $k) :?>
+             <option value = "<?php echo $k['id_kategori'] ?>"><?php echo $k['kategori_nama'] ?></option>
+             <?php endforeach?>
              </select> 
             <label for="kategori">Kategori</label>
          </div>  
          <br/>
          <div class="add2">
-             <a href="#"><button class="btn-secondary">Submit</button></a> 
+             <a href="#"><button class="btn-secondary" name="submit">Submit</button></a> 
          </div>
          </fieldset> 
+             </form>
     </section>
+
+    <?php
+     if (isset($_POST["submit"]))
+        {
+            $kode  = $_POST['kode'];
+            $judul = $_POST['judul'];
+            $link = $_POST['link'];
+            $kategori = $_POST['kategori'];
+
+            //menyimpan cover kursus
+            $file        = $_FILES['cover']['tmp_name'];
+            $nama_file   = $_FILES['cover']['name'];
+            $destination = "cover/" . $nama_file;
+
+            $cek = mysqli_num_rows(mysqli_query($dtb, "SELECT * FROM course WHERE course_title = '$judul'"));
+            if($cek>0){
+                echo "<script>window.alert('Course Sudah Terdaftar')
+                      window.location='kursus.tambah'</script>";
+            } else {
+                $query = "INSERT INTO course (code_course, course_title, vid_course, course_cover, id_kategori)
+                          VALUES('$kode', '$judul', '$link', '$nama_file', $kategori)";
+                $hasil = mysqli_query($dtb, $query);
+                if($hasil == true)
+                {
+                    move_uploaded_file($file, $destination);
+                    echo "<script>window.alert('Data Berhasil di Tambah')
+                          window.location='kursus.php'</script>";
+                }else{
+                    echo "koneksi gagal" .mysqli_error($dtb);
+                }
+            }
+        }
+    ?>
 
 <script>
     let btn = document.querySelector(".toggle");
