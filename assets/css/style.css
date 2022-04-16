@@ -224,7 +224,7 @@ header .image-text .header-text{
 }
 
 .home .content-table{
-    position: static;
+    position: relative;
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 0.9em;
@@ -240,6 +240,7 @@ header .image-text .header-text{
     color: var(--text-color);
     text-align: left;
     font-weight: bold;
+    padding: 12px 15px;
 }
 
 .content-table th,
