@@ -1,0 +1,133 @@
+/*body{
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.container{
+    column-count: 10em;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding: 10px 10px;
+    width: 406px;
+    max-width: 406px;
+    margin: 0 auto;
+
+}
+
+.bungkus-gambar-kolom3{
+ position: relative;
+}
+
+.container button{
+    padding:  6px 25px 0px 20px;
+    margin: 12px 10px 22px 0px;
+    background-color:rgb(157, 56, 194);
+    font-size: 14px;
+    border:rgb(2, 2, 2);
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font: bold;
+    font-family:Calibri, 'Trebuchet MS', sans-serif;
+    float: right;
+    position: relative;
+ 
+}
+
+.container .inputs input[type=password], input[type=email], input[type=text]{
+    background: white;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    padding: 13px 10px;
+    width: 385px;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+.container h1{
+    margin: 0 0 30px 0;
+    text-align: center;
+}*/
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body{
+    background: #fff;
+}
+
+.bungkus{
+    background:#ffffff;
+    width: 405px;
+    margin: 80px auto;
+    border-radius: 15px;
+    overflow:hidden;
+    position: static;
+}
+.bungkus-kepala{
+   background: #fff;
+   padding: 10px 22px;
+   height: 60px;
+
+}
+.bungkus-kepala h2.tittle{
+    color: #000000;
+    font-weight: normal;
+    line-height: 40px;
+    text-align: center;
+}
+
+.bungkus-utama{
+    padding: 10px 22px 0;
+    color: #808080;
+}
+
+.bungkus-utama .grup{
+    margin: 16px 0;
+}
+
+.bungkus-utama .grup label,
+.bungkus-utama .grup input{
+    display: block;
+}
+
+.bungkus-utama .grup label{
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.bungkus-utama .grup input[type="text"], .bungkus-utama .grup input[type="password"]{
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    background: #eeeeee;
+    border: none;
+    color: #808080;
+}
+
+.bungkus-utama .grup input[type="submit"]{
+    background: #105375;
+    padding: 6px 18px;
+    margin: 0 auto;
+    border: 1px solid #62beec;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.bungkus-utama .grup input[type="submit"]:hover{
+    background:#023269;
+    border: 1px solid #001a30;
+}
+
