@@ -1,4 +1,16 @@
 <?php
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $database = "bookr";
+
+    $dtb = mysqli_connect($host, $user, $pass, $database);
+
+    if(!$dtb)
+    {
+        die("Koneksi Gagal : " .mysqli_connect_error($dtb));
+    }
+
     error_reporting(0);
 ?>
 <!DOCTYPE html>
@@ -92,19 +104,26 @@
                     <th>Pilihan</th>
                     </tr>
                 </thead>
+                <?php 
+                    $no = 1;
+                    $display = mysqli_query($dtb, 'SELECT * FROM `user` ORDER BY id_user desc');
+                    while($data = mysqli_fetch_array($display)):
+                    
+                ?>
                 <tbody>
                     <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href="user-edit.php"><button class="btn-primary">Edit</button></a>
-                        <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
-                    </td>
+                        <td><?php echo $no++ ?></td>
+                        <td><?php echo $data ['nama_user']?></td>
+                        <td><?php echo $data ['username']?></td>
+                        <td><?php echo $data ['email']?></td>
+                        <td><?php echo $data ['asal_sekolah']?></td>
+                        <td><?php echo $data ['id_level']?></td>
+                        <td>
+                            <a href="user-edit.php"><button class="btn-primary">Edit</button></a>
+                            <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
+                        </td>
                     </tr>
+                    <?php endwhile; ?>
                     </tbody>
             </table>
     </section>
