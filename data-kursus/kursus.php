@@ -80,17 +80,9 @@
             </div>
         </div>
     </nav>
-    <?php
-        $query = mysqli_query($dtb, "SELECT course.*, kategori.kategori_nama
-                                    FROM course
-                                    LEFT JOIN kategori ON kategori.id_kategori = course.id_kategori");
-        $data_kursus = array();
-        $no = 1;
-        while($row = mysqli_fetch_assoc($query))
-        {
-            $data_kursus[] = $row;
-        }
-    ?>
+<?php 
+include "kursus-list.php";
+?>
     <section class="home">
         <h1><span>Data Kursus</span></h1>
         <table class="content-table">
@@ -105,7 +97,7 @@
                     <th>Pilihan</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody>  
                     <?php foreach($data_kursus as $kursus) :?>
                     <tr>
                     <td><?php echo $no++ ?></td>
@@ -116,8 +108,8 @@
                     <td><?php echo $kursus['kategori_nama'] ?></td>
                     <?php endforeach?>
                     <td>
-                        <a href="kursus-edit.php"><button class="btn-primary">Edit</button></a>
-                        <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
+                        <a href="kursus-edit.php?id_course=<?php echo $kursus['id_course']; ?>"><button class="btn-primary">Edit</button></a>
+                        <a href="kursus-delete.php?id_course=<?php echo $kursus['id_course']; ?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
                     </td>
                     </tr>
                     </tbody>
@@ -125,6 +117,7 @@
 
             <div class="add">
             <a href="kursus-tambah.php"><button class="btn-secondary">Tambah</button></a>
+            
             </div>
     </section>
 
