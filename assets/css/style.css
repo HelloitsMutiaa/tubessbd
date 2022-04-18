@@ -246,6 +246,7 @@ header .image-text .header-text{
 .content-table th,
 .content-table td{
     padding: 12px 15px;
+    text-align:left ;
 }
 
 .content-table tbody tr{
