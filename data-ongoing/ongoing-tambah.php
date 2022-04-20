@@ -84,6 +84,7 @@
         </div>
     </nav>
     <section class="home">
+    <form action="" method="POST">
     <h1><span>Add Ongoing</span></h1>
         <fieldset>
          <div class="form">
@@ -93,7 +94,7 @@
             <label for="anak">Nama Anak</label>
          </div>  
          <div class="form">
-			 <select id="judul" class="custom-select" name="anak">
+			 <select id="judul" class="custom-select" name="judul">
              <option value = ""></option>
             </select>
             <label for="judul">Judul</label> 
@@ -102,16 +103,35 @@
              <input type="text" id="date" name="date" class="tgl" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required>
              <label for="date">Tanggal Mulai</label>
          </div> 
-         <div class="form">
-             <input type="text" id="date" name="date" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required>
-             <label for="date">Tanggal Selesai</label>
-         </div> 
          <br/>
          <div class="add2">
-             <a href="#"><button class="btn-secondary">Submit</button></a> 
+             <a href="#"><button class="btn-secondary" name="submit">Submit</button></a> 
          </div>
          </fieldset> 
+    </form>
+    </section>
 
+
+         <?php 
+            include "../includes/connect.php";
+
+            if(isset($_POST["submit"]))
+            {
+                $anak = $_POST['anak'];
+                $judul = $_POST['judul'];
+                $tgl_mulai = date('Y-m-d', strtotime(date('Y-m-d')));
+
+                $query = mysqli_query($dtb, "INSERT INTO ongoing (id_child, id_ongoing, tgl_mulai)
+                        VALUES ($anak, $judul, '$tgl_mulai')");
+                if($query == true)
+                {
+                    echo "<script>window.alert('Data Berhasil di Tambah')
+                            window.location='ongoing.php'</script>";
+                } else {
+                    echo "Koneksi gagal".mysqli_error($dtb);
+                }
+            }
+         ?>
 <script>
     let btn = document.querySelector(".toggle");
     let sidebar = document.querySelector(".sidebar");

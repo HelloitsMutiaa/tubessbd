@@ -124,8 +124,8 @@
                     <?php endif ?>
                     </td>
                     <td>
-                        <a href="#"><button class="btn-primary">Edit</button></a>
-                        <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
+                        <a href="#"><button class="btn-primary">Finish</button></a>
+                        <a href="ongoing-delete.php?id_ongoing=<?php echo $on['id_ongoing']; ?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Delete</button></a>
                     </td>
                     </tr>
                     <?php endforeach ?>
