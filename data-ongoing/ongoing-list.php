@@ -1,10 +1,11 @@
 <?php 
 include "../includes/connect.php";
     $no = 1;
-    $query = "SELECT ongoing.id_ongoing, childs.child_name, course.course_title
-            FROM((ongoing
-            INNER JOIN childs ON ongoing.id_child=childs.id_child)
-            INNER JOIN course ON ongoing.id_course=course.id_course)";
+    $query = "SELECT ongoing.*, ongoing.id_ongoing AS id_ongoing, childs.child_name, course.course_title,
+            (SELECT tgl_selesai FROM selesai WHERE selesai.id_ongoing=id_ongoing) AS tgl_selesai
+            FROM ongoing
+            JOIN childs ON ongoing.id_child=childs.id_child
+            JOIN course ON ongoing.id_course=course.id_course";
 
     $result = mysqli_query($dtb, $query);
 

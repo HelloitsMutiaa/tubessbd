@@ -1,9 +1,18 @@
 <?php 
     error_reporting(0);
 ?>
-<?php 
-    require "../includes/connect.php";
-    include "ongoing-list.php";
+<?php
+    include "../includes/connect.php";
+    $id_ongoing = $_GET['id_ongoing'];
+    $tgl_selesai = date('Y-m-d');
+
+    $query = "SELECT childs.child_name, course.course_title, ongoing.id_ongoing
+             FROM ongoing
+             LEFT JOIN childs ON ongoing.id_child=childs.id_child
+             LEFT JOIN course ON ongoing.id_course=course.id_course
+             WHERE ongoing.id_ongoing = $id_ongoing";
+    $hasil = mysqli_query($dtb, $query);
+    $ongo = mysqli_fetch_assoc($hasil);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,58 +93,56 @@
         </div>
     </nav>
     <section class="home">
-        <h1><span>Data Ongoing</span></h1>
-        <table class="content-table">
-                <thead>
-                    <tr>
-                    <th>No.</th>
-                    <th>Nama Anak</th>
-                    <th>Judul</th>
-                    <th>Tanggal Mulai</th>
-                    <th>Tanggal Selesai</th>
-                    <th>Status</th>
-                    <th>Pilihan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($data as $on) : ?>
-                    <tr>
-                    <td><?php echo $no ?></td>
-                    <td><?php echo $on['child_name'] ?></td>
-                    <td><?php echo $on['course_title']?></td>
-                    <td><?php echo date('d-m-Y',($on['tgl_mulai']))?></td>
-                    <td>
-                        <?php 
-                        if(empty($on['tgl_selesai']))
-                        {
-                            echo "-";
-                        } else {
-                            echo date('d-m-Y',($on['tgl_selesai']));
-                        }
-                        ?>
-                    </td>
-                    <td><?php $status = '' ?>
-                    <?php if(empty($on['tgl_selesai'])): ?>
-                        Ongoing
-                    <?php $status = 'Ongoing' ?>
-                    <?php else : ?>
-                        Finished
-                    <?php $status = 'finished' ?>
-                    <?php endif ?>
-                    </td>
-                    <td>
-                        <a href="../data-finished/finished-list.php?id_ongoing=<?php echo $on ['id_ongoing'];?>"><button class="btn-primary">Finish</button></a>
-                        <a href="ongoing-delete.php?id_ongoing=<?php echo $on['id_ongoing']; ?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Delete</button></a>
-                    </td>
-                    </tr>
-                    <?php endforeach ?>
-                    </tbody>
-            </table>
-            <div class="add">
-            <a href="ongoing-tambah.php"><button class="btn-secondary">Tambah</button></a>
-            </div>
+    <form action="" method="POST">
+    <h1><span>Finished</span></h1>
+        <fieldset class="box">
+            <input type="hidden" name="id" value="<?php echo $ongo['id_ongoing']?>">
+         <div class="form">
+			 <input type="text" name="anak" value="<?php echo $ongo['child_name']?>">
+            <label for="anak">Nama Anak</label>
+         </div>  
+         <div class="form">
+			 <input type="text" name="judul" value="<?php echo $ongo['course_title']?>">
+            <label for="judul">Judul</label> 
+         </div>  
+         <div class="form">
+             <input type="text" id="date" name="date" class="tgl" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" value="<?php echo $ongo['tgl_mulai']?>" required>
+             <label for="date">Tanggal Mulai</label>
+         </div> 
+         <div class="form">
+             <input type="text" id="date" name="selesai" class="tgl" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" value="<?php echo $tgl_selesai?>" required>
+             <label for="date">Tanggal Selesai</label>
+         </div> 
+         <br/>
+         <div class="add2">
+             <a href="#"><button class="btn-secondary" name="submit">Submit</button></a> 
+         </div>
+         </fieldset> 
+    </form>
     </section>
 
+
+         <?php 
+            include "../includes/connect.php";
+
+            if(isset($_POST["submit"]))
+            {
+                $id = $_POST['id'];
+                $selesai = $_POST['selesai'];
+                $poin = 40;
+
+                $query2 = "INSERT INTO selesai (id_ongoing, tgl_selesai, poin)
+                VALUES ($id, '$selesai', $poin)";
+
+                $hasil2 = mysqli_query($dtb, $query2);
+                if($hasil2 == true)
+                {
+                    header('location:../data-ongoing/ongoing.php');
+                } else {
+                    header('location:finished-list.php');
+                }
+            }
+         ?>
 <script>
     let btn = document.querySelector(".toggle");
     let sidebar = document.querySelector(".sidebar");

@@ -1,5 +1,6 @@
 <?php 
     error_reporting(0);
+    include "list.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,21 +91,19 @@
                     <th>Tanggal Mulai</th>
                     <th>Tanggal Selesai</th>
                     <th>Poin</th>
-                    <th>Pilihan</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($data as $d) :?>
                     <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
-                    </td>
+                    <td><?php echo $no++?></td>
+                    <td><?php echo $d['child_name']?></td>
+                    <td><?php echo $d['course_title']?></td>
+                    <td><?php echo date('d-m-Y', ($d['tgl_mulai']))?></td>
+                    <td><?php echo date('d-m-Y', ($d['tgl_selesai']))?></td>
+                    <td><?php echo $d['poin']?> Coins</td>
                     </tr>
+                    <?php endforeach ?>
                     </tbody>
             </table>
     </section>
