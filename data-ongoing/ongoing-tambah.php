@@ -86,7 +86,7 @@
     <section class="home">
     <form action="" method="POST">
     <h1><span>Add Ongoing</span></h1>
-        <fieldset>
+        <fieldset class="box">
          <div class="form">
 			 <select id="anak" class="custom-select" name="anak">
              <option value = ""></option>

@@ -81,7 +81,7 @@
     </nav>
     <section class="home">
         <h1><span>Edit Keluarga</span></h1>
-        <fieldset>
+        <fieldset class="box">
          <div class="form">
              <input type="text" required>
              <label for="">Nama</label>

@@ -184,7 +184,8 @@ header .image-text .header-text{
     transition: var(--tran-05);
 }
 
-.home h1{
+.home h1,
+.sign h1{
     margin: 50px auto;
     text-align: center;
     font-size: 40px;
@@ -193,7 +194,8 @@ header .image-text .header-text{
     color: var(--text-color);
 }
 
-.home h1::before{
+.home h1::before,
+.sign h1::before{
     content: "";
     display: block;
     width: 140px;
@@ -204,7 +206,8 @@ header .image-text .header-text{
     left: 0;
 }
 
-.home h1::after{
+.home h1::after,
+.sign h1::after{
     content: "";
     display: block;
     width: 140px;
@@ -317,7 +320,12 @@ header .image-text .header-text{
     margin-right: auto;
 }
 
-fieldset{
+.add3{
+    position: static;
+    margin-left: 200px;
+}
+
+.box{
     position: static;
     margin: 0 300px 0 300px;
     padding-bottom: 50px;
@@ -478,3 +486,48 @@ fieldset{
     font-weight: 400;
     text-transform: capitalize;
 }
+
+.reg{
+    position: relative;
+    margin: 0 400px;
+    margin-bottom: 200px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    background: var(--sidebar-color);
+}
+
+.sign h3{
+    position: relative;
+    text-align: center;
+    color: var(--text-color);
+    font-size: 18px;
+}
+.sign a{
+    color: var(--primary-color);
+}
+
+.fp-table{
+    margin-left: 530px;
+}
+
+.input-group-append {
+    right: 17px;
+    position: absolute;
+    top: 20px;
+    color: var(--text-color);
+}
+
+.fp-image{
+    width: 350px;
+    margin: 50px 0 30px 510px;
+    border-radius: 20px;
+}
+
+.title{
+    text-align: center;
+    color: var(--text-color);
+}
+

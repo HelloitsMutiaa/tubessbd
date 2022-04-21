@@ -97,7 +97,7 @@
     <section class="home">
     <form method="POST" enctype="multipart/form-data">
         <h1><span>Edit Kursus</span></h1>
-        <fieldset>
+        <fieldset class="box">
         <input type="hidden" name="id_kursus" value="<?php echo $id_course; ?>"> 
          <div class="form">
              <input type="text" required value="<?php echo $data_kursus['course_title']; ?>" name="judul">

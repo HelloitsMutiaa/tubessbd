@@ -84,7 +84,7 @@
     <section class="home">
         <form method="POST" enctype="multipart/form-data">
         <h1><span>Tambah Kursus</span></h1>
-        <fieldset>
+        <fieldset class="box">
          <div class="form">
              <input type="text" name="kode" required>
              <label for="">Kode</label>
