@@ -4,7 +4,7 @@
 <?php
     include "../includes/connect.php";
     $id_ongoing = $_GET['id_ongoing'];
-    $tgl_selesai = date('Y-m-d');
+    $tgl_selesai = date('d-m-Y');
 
     $query = "SELECT childs.child_name, course.course_title, ongoing.id_ongoing
              FROM ongoing
