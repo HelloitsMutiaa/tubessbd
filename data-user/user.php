@@ -1,17 +1,6 @@
 <?php
-    $host = "localhost";
-    $user = "root";
-    $pass = "";
-    $database = "bookr";
-
-    $dtb = mysqli_connect($host, $user, $pass, $database);
-
-    if(!$dtb)
-    {
-        die("Koneksi Gagal : " .mysqli_connect_error($dtb));
-    }
-
-    error_reporting(0);
+    require "function.php";
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,8 +96,9 @@
                 <?php 
                     $no = 1;
                     $display = mysqli_query($dtb, 'SELECT * FROM `user` ORDER BY id_user desc');
+                    // $display1 = mysqli_query($dtb, 'SELECT * FROM user LEFT JOIN level ON id_levelw ');
+                    // while($namalevel = mysqli_fetch_array($display1));
                     while($data = mysqli_fetch_array($display)):
-                    
                 ?>
                 <tbody>
                     <tr>
@@ -120,7 +110,7 @@
                         <td><?php echo $data ['id_level']?></td>
                         <td>
                             <a href="user-edit.php"><button class="btn-primary">Edit</button></a>
-                            <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
+                            <a href="hapus_user.php?nama=<?php echo $data ['nama_user']; ?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
                         </td>
                     </tr>
                     <?php endwhile; ?>
