@@ -1,5 +1,5 @@
 <?php
-    require "function.php";
+    include "user-list.php";
     
 ?>
 <!DOCTYPE html>
@@ -93,27 +93,21 @@
                     <th>Pilihan</th>
                     </tr>
                 </thead>
-                <?php 
-                    $no = 1;
-                    $display = mysqli_query($dtb, 'SELECT * FROM `user` ORDER BY id_user desc');
-                    // $display1 = mysqli_query($dtb, 'SELECT * FROM user LEFT JOIN level ON id_levelw ');
-                    // while($namalevel = mysqli_fetch_array($display1));
-                    while($data = mysqli_fetch_array($display)):
-                ?>
                 <tbody>
                     <tr>
+                        <?php foreach ($data_user as $data): ?>
                         <td><?php echo $no++ ?></td>
-                        <td><?php echo $data ['nama_user']?></td>
-                        <td><?php echo $data ['username']?></td>
-                        <td><?php echo $data ['email']?></td>
-                        <td><?php echo $data ['asal_sekolah']?></td>
-                        <td><?php echo $data ['id_level']?></td>
+                        <td><?php echo $data['nama_user']?></td>
+                        <td><?php echo $data['username']?></td>
+                        <td><?php echo $data['email']?></td>
+                        <td><?php echo $data['asal_sekolah']?></td>
+                        <td><?php echo $data['nama_level']?></td>
                         <td>
+                        <?php endforeach ?>
                             <a href="user-edit.php"><button class="btn-primary">Edit</button></a>
                             <a href="hapus_user.php?nama=<?php echo $data ['nama_user']; ?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
                         </td>
                     </tr>
-                    <?php endwhile; ?>
                     </tbody>
             </table>
     </section>
