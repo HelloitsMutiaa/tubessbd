@@ -6,7 +6,7 @@
     $id_ongoing = $_GET['id_ongoing'];
     $tgl_selesai = date('d-m-Y');
 
-    $query = "SELECT childs.child_name, course.course_title, ongoing.id_ongoing
+    $query = "SELECT childs.child_name, course.course_title, ongoing.id_ongoing, ongoing.tgl_mulai
              FROM ongoing
              LEFT JOIN childs ON ongoing.id_child=childs.id_child
              LEFT JOIN course ON ongoing.id_course=course.id_course
@@ -106,7 +106,7 @@
             <label for="judul">Judul</label> 
          </div>  
          <div class="form">
-             <input type="text" id="date" name="date" class="tgl" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" value="<?php echo $ongo['tgl_mulai']?>" required>
+             <input type="text" id="date" name="date" class="tgl" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" value="<?php echo date($ongo['tgl_mulai'])?>" required>
              <label for="date">Tanggal Mulai</label>
          </div> 
          <div class="form">

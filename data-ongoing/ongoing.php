@@ -100,17 +100,17 @@
                 <tbody>
                     <?php foreach ($data as $on) : ?>
                     <tr>
-                    <td><?php echo $no ?></td>
+                    <td><?php echo $no++ ?></td>
                     <td><?php echo $on['child_name'] ?></td>
                     <td><?php echo $on['course_title']?></td>
-                    <td><?php echo date('d-m-Y',($on['tgl_mulai']))?></td>
+                    <td><?php echo date($on['tgl_mulai'])?></td>
                     <td>
                         <?php 
                         if(empty($on['tgl_selesai']))
                         {
                             echo "-";
                         } else {
-                            echo date('d-m-Y',($on['tgl_selesai']));
+                            echo date($on['tgl_selesai']);
                         }
                         ?>
                     </td>

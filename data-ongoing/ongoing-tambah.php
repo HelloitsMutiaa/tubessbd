@@ -4,6 +4,8 @@
 <?php 
     require "../includes/connect.php";
     include "ongoing-list.php";
+    include "../data-family/family-list.php";
+    include "../data-kursus/kursus-list.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,13 +91,17 @@
         <fieldset class="box">
          <div class="form">
 			 <select id="anak" class="custom-select" name="anak">
-             <option value = ""></option>
+            <?php foreach($data_childs as $dc): ?>
+             <option value = "<?php echo $dc['id_child']?>"><?php echo $dc['child_name']?></option>
+            <?php endforeach ?>
             </select> 
             <label for="anak">Nama Anak</label>
          </div>  
          <div class="form">
 			 <select id="judul" class="custom-select" name="judul">
-             <option value = ""></option>
+            <?php foreach($data_kursus as $dk): ?>
+             <option value = "<?php echo $dk['id_course']?>"><?php echo $dk['course_title']?></option>
+            <?php endforeach ?>
             </select>
             <label for="judul">Judul</label> 
          </div>  
@@ -121,7 +127,7 @@
                 $judul = $_POST['judul'];
                 $tgl_mulai = date('Y-m-d', strtotime(date('Y-m-d')));
 
-                $query = mysqli_query($dtb, "INSERT INTO ongoing (id_child, id_ongoing, tgl_mulai)
+                $query = mysqli_query($dtb, "INSERT INTO ongoing (id_child, id_course, tgl_mulai)
                         VALUES ($anak, $judul, '$tgl_mulai')");
                 if($query == true)
                 {
