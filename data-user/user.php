@@ -100,7 +100,15 @@
                         <td><?php echo $data['nama_user']?></td>
                         <td><?php echo $data['username']?></td>
                         <td><?php echo $data['email']?></td>
-                        <td><?php echo $data['asal_sekolah']?></td>
+                        <td><?php 
+                            if(empty($data['asal_sekolah']))
+                            {
+                                echo "-";
+                            } else {
+                                echo $data['asal_sekolah'];
+                            }
+                            ?>
+                        </td>
                         <td><?php echo $data['nama_level']?></td>
                         <td>
                         <?php endforeach ?>

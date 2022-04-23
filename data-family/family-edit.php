@@ -79,28 +79,63 @@
             </div>
         </div>
     </nav>
+    <?php
+    include "../includes/connect.php";
+        $id_child = $_GET['id_child'];
+        $query = "SELECT childs.*, user.id_user, user.nama_user
+         FROM childs
+         JOIN user ON childs.id_user=user.id_user
+         WHERE childs.id_child = $id_child";
+        $hasil = mysqli_query($dtb, $query);
+        $data = mysqli_fetch_assoc($hasil);
+    ?>
     <section class="home">
+        <form action="" method="POST">
         <h1><span>Edit Keluarga</span></h1>
         <fieldset class="box">
+        <input type="hidden" value="<?php echo $data['id_child']?>" name="id">
          <div class="form">
-             <input type="text" required>
+             <input type="text" required value="<?php echo $data['child_name']?>" name="nama">
              <label for="">Nama</label>
          </div>  
          <div class="form">
-             <input type="text" required>
+             <input type="text" required value="<?php echo $data['child_uname']?>" name="uname">
              <label for="">Username</label>
          </div>  
          <div class="form">
-             <input type="text" required>
+         <input type="text" id="date" name="date" class="tgl" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" required value="<?php echo $data['child_lahir']?>">
              <label for="">Tanggal Lahir</label>
          </div> 
          <br/>
          <div class="add2">
-             <a href="#"><button class="btn-secondary">Submit</button></a> 
+             <a href="#"><button class="btn-secondary" name="submit">Submit</button></a> 
          </div>
-         
          </fieldset> 
+        </form>
     </section>
+
+    <?php 
+    if(isset($_POST['submit'])){
+        $id = $_POST['id'];
+        $nama = $_POST['nama'];
+        $username = $_POST['uname'];
+        $lahir = $_POST['date'];
+
+        $query2 = "UPDATE childs
+                SET child_name='$nama',
+                    child_uname='$username',
+                    child_lahir='$lahir'
+                WHERE id_child=$id";
+        $hasil2 = mysqli_query($dtb, $query2);
+        if($hasil2 == true){
+            echo "<script>window.alert('Data Berhasil di Update')
+                 window.location='family.php'</script>";
+        }else {
+            echo "Koneksi Gagal" .mysqli_error($dtb);
+        }
+    }
+
+    ?>
 
 <script>
     let btn = document.querySelector(".toggle");

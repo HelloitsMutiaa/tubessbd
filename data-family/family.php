@@ -1,5 +1,6 @@
 <?php 
     error_reporting(0);
+    include "family-list.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,16 +96,18 @@
                 </thead>
                 <tbody>
                     <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <?php foreach($data_childs as $data): ?>
+                    <td><?php echo $no++ ?></td>
+                    <td><?php echo $data['child_name']?></td>
+                    <td><?php echo $data['child_uname']?></td>
+                    <td><?php echo $data['child_lahir']?></td>
+                    <td><?php echo $data['nama_user']?></td>
+                    <td><?php echo $data['child_school']?></td>
                     <td>
-                        <a href="family-edit.php"><button class="btn-primary">Edit</button></a>
-                        <a href="#"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
+                        <a href="family-edit.php?id_child=<?php echo $data['id_child']?>"><button class="btn-primary">Edit</button></a>
+                        <a href="family-hapus.php?id_child=<?php echo $data['id_child']?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
                     </td>
+                    <?php endforeach?>
                     </tr>
                     </tbody>
             </table>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Apr 2022 pada 14.54
+-- Waktu pembuatan: 23 Apr 2022 pada 19.28
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 8.0.11
 
@@ -33,6 +33,7 @@ CREATE TABLE `childs` (
   `child_uname` varchar(100) NOT NULL,
   `child_pass` varchar(40) NOT NULL,
   `child_lahir` date DEFAULT NULL,
+  `school` varchar(40) NOT NULL,
   `id_level` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -51,6 +52,13 @@ CREATE TABLE `course` (
   `course_cover` varchar(50) DEFAULT NULL,
   `id_kategori` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `course`
+--
+
+INSERT INTO `course` (`id_course`, `code_course`, `course_title`, `vid_course`, `course_cover`, `id_kategori`) VALUES
+(19, '25b', 'Narnia', 'https://youtube.com', '38ff8a9704e8b224bbf03ac5fd40f61f.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -138,6 +146,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`id_user`, `nama_user`, `username`, `email`, `pass_user`, `asal_sekolah`, `id_level`) VALUES
+(1, 'Mutia', 'Mutiaunch', 'Mutia@gmail.com', 'mutia123', NULL, 2);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -199,13 +214,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `childs`
 --
 ALTER TABLE `childs`
-  MODIFY `id_child` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_child` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `course`
 --
 ALTER TABLE `course`
-  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
