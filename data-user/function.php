@@ -3,7 +3,7 @@
     $host = "localhost";
     $user = "root";
     $pass = "";
-    $database = "bookr";
+    $database = "bookp";
 
     $dtb = mysqli_connect($host, $user, $pass, $database);
 
@@ -28,6 +28,4 @@
         mysqli_query($dtb, $querynya);
         return mysqli_affected_rows($dtb);
     }
-    
-
 ?>

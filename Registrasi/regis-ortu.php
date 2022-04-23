@@ -17,19 +17,19 @@
         <h1><span>Registrasi</span></h1> 
         <fieldset class="reg">
          <div class="form">
-             <input type="text" required>
+             <input type="text" name="nama2" required>
              <label for="">Nama</label>
          </div>  
          <div class="form">
-             <input type="text" required>
+             <input type="text" name="username2" required>
              <label for="">Username</label>
          </div>  
          <div class="form">
-             <input type="text" required>
+             <input type="text" name="email2" required>
              <label for="">Email</label>
          </div>   
          <div class="form">
-            <input type="password" id="pwd" required>
+            <input type="password" id="pwd" name="pass" required>
             <label for="">Password</label>
             <div class="input-group-append">
 			    <i class="fa fa-eye-slash" id="icon"></i>
