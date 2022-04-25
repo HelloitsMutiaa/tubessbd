@@ -1,11 +1,5 @@
 <?php
-    require "../data-user/function.php";
     error_reporting(0);
-    if(isset($_POST['submit'])) {
-        tambah($_POST);
-        $_POST = [];
-        // var_dump($_POST);
-        }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +40,7 @@
 				<i class="fa fa-eye-slash" id="icon"></i>
 			</div>
         </div>  
-         <h3>Already Have an Account?<a href="#">Sign In</a></h3>
+         <h3>Already Have an Account?<a href="login.php">Sign In</a></h3>
          <br/>
          <div class="add3">
              <a href="#"><button type="submit" name="submit" class="btn-secondary">Submit</button></a> 
@@ -54,6 +48,41 @@
          </fieldset> 
          </form>
     </section>
+
+    <?php
+    include "../includes/connect.php";
+
+    if(isset($_POST['submit'])){
+        $nama = $_POST['nama'];
+        $user = $_POST['namauser'];
+        $email = $_POST['email'];
+        $asal = $_POST['sekolah'];
+        $pass = md5($_POST['pass']);
+        $level = 3;
+
+        $cek1 = mysqli_num_rows(mysqli_query($dtb, "SELECT*FROM user WHERE username='$user'"));
+        $cek1 = mysqli_num_rows(mysqli_query($dtb, "SELECT*FROM user WHERE email='$email'"));
+
+        if ($cek1 > 0) {
+            echo "<script>window.alert('Username sudah Terdaftar')
+            window.location='regis-guru.php'</script>";
+            return false;
+        } 
+        if ($cek2 > 0) {
+            echo "<script>window.alert('Email sudah Terdaftar')
+            window.location='regis-guru.php'</script>";
+            return false;
+        } 
+        $query = mysqli_query($dtb, "INSERT INTO user(nama_user, username, email, pass_user, asal_sekolah, id_level)
+                VALUES('$nama', '$user', '$email', '$pass', '$asal', $level)");
+        if($query>0){
+            header('location:login.php');
+        }
+
+
+    }
+
+    ?>
     
 
     <script src="../assets/js/show.js"></script>
