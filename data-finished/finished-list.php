@@ -4,7 +4,7 @@
 <?php
     include "../includes/connect.php";
     $id_ongoing = $_GET['id_ongoing'];
-    $tgl_selesai = date('d-m-Y');
+    $tgl_selesai = date('Y-m-d');
 
     $query = "SELECT childs.child_name, course.course_title, ongoing.id_ongoing, ongoing.tgl_mulai
              FROM ongoing
@@ -96,7 +96,7 @@
     <form action="" method="POST">
     <h1><span>Finished</span></h1>
         <fieldset class="box">
-            <input type="hidden" name="id" value="<?php echo $ongo['id_ongoing']?>">
+            <input type="hidden" name="id" value="<?php echo $id_ongoing?>">
          <div class="form">
 			 <input type="text" name="anak" value="<?php echo $ongo['child_name']?>">
             <label for="anak">Nama Anak</label>
@@ -137,8 +137,10 @@
                 $hasil2 = mysqli_query($dtb, $query2);
                 if($hasil2 == true)
                 {
-                    header('location:../data-ongoing/ongoing.php');
+                    echo "<script>window.alert('Data Berhasil di Tambah')
+                            window.location='finished.php'</script>";
                 } else {
+                    echo "koneksi.gagal" .mysqli_error($dtb);
                     header('location:finished-list.php');
                 }
             }

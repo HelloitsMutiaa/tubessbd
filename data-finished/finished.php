@@ -95,14 +95,16 @@
                 </thead>
                 <tbody>
                     <?php foreach($data as $d) :?>
+                    <?php if(!empty($d['tgl_selesai'])): ?>
                     <tr>
                     <td><?php echo $no++?></td>
                     <td><?php echo $d['child_name']?></td>
                     <td><?php echo $d['course_title']?></td>
-                    <td><?php echo date('d-m-Y', ($d['tgl_mulai']))?></td>
-                    <td><?php echo date('d-m-Y', ($d['tgl_selesai']))?></td>
+                    <td><?php echo date($d['tgl_mulai'])?></td>
+                    <td><?php echo date($d['tgl_selesai'])?></td>
                     <td><?php echo $d['poin']?> Coins</td>
                     </tr>
+                    <?php endif?>
                     <?php endforeach ?>
                     </tbody>
             </table>

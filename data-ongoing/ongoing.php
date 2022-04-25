@@ -92,42 +92,24 @@
                     <th>Nama Anak</th>
                     <th>Judul</th>
                     <th>Tanggal Mulai</th>
-                    <th>Tanggal Selesai</th>
                     <th>Status</th>
                     <th>Pilihan</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($data as $on) : ?>
+                    <?php if(empty($on['tgl_selesai'])):?>
                     <tr>
                     <td><?php echo $no++ ?></td>
                     <td><?php echo $on['child_name'] ?></td>
                     <td><?php echo $on['course_title']?></td>
                     <td><?php echo date($on['tgl_mulai'])?></td>
-                    <td>
-                        <?php 
-                        if(empty($on['tgl_selesai']))
-                        {
-                            echo "-";
-                        } else {
-                            echo date($on['tgl_selesai']);
-                        }
-                        ?>
-                    </td>
-                    <td><?php $status = '' ?>
-                    <?php if(empty($on['tgl_selesai'])): ?>
-                        Ongoing
-                    <?php $status = 'Ongoing' ?>
-                    <?php else : ?>
-                        Finished
-                    <?php $status = 'finished' ?>
-                    <?php endif ?>
-                    </td>
+                    <td>Ongoing</td>
                     <td>
                         <a href="../data-finished/finished-list.php?id_ongoing=<?php echo $on ['id_ongoing'];?>"><button class="btn-primary">Finish</button></a>
-                        <a href="ongoing-delete.php?id_ongoing=<?php echo $on['id_ongoing']; ?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Delete</button></a>
                     </td>
                     </tr>
+                    <?php endif ?>
                     <?php endforeach ?>
                     </tbody>
             </table>
