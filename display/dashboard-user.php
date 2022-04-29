@@ -43,7 +43,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-user/user.php">
+                        <a href="../data-user/user-us.php">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">User</span>
                         </a>

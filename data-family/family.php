@@ -1,6 +1,11 @@
 <?php 
     error_reporting(0);
     include "family-list.php";
+    session_start();
+    if(empty($_SESSION['username'])){
+        header('Location: ../Registrasi/login.php');
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

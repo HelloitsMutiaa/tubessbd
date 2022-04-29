@@ -1,11 +1,7 @@
-<?php 
-    error_reporting(0);
-    include "list.php";
-    session_start();
-    if(empty($_SESSION['username'])){
-        header('Location: ../Registrasi/login.php');
-        exit();
-    }
+<?php
+    error_reporting();
+    include "user-list.php";
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,9 +9,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../assets/css/style.css?<?php echo time();?>" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../assets/css/style.css?<?php echo time();?>">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <title>BookR</title>
 </head>
 <body>
@@ -23,7 +18,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="../assets/img/logo.png" alt=""/>
+                    <img src="../assets/img/logo.png" alt="">
                 </span>
                 
                 <div class="text header-text">
@@ -43,8 +38,8 @@
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a href="../data-user/user.php">
+                    <li class="nav-link active">
+                        <a href="user-us.php">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">User</span>
                         </a>
@@ -57,25 +52,13 @@
                     </li>
                     <li class="nav-link">
                         <a href="../data-kursus/kursus.php">
-                            <i class='bx bx-library icon'></i>
-                            <span class="text nav-text">Course</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="../data-ongoing/ongoing.php">
-                            <i class='bx bx-time-five icon'></i>
-                            <span class="text nav-text">Ongoing</span>
-                        </a>
-                    </li>
-                    <li class="nav-link active">
-                        <a href="finished.php">
-                            <i class='bx bx-check icon'></i>
-                            <span class="text nav-text">Finished</span>
+                            <i class='bx bx-error-circle icon'></i>
+                            <span class="text nav-text">About-us</span>
                         </a>
                     </li>
                 </ul>
             </div>
-            <div class="bottom-content">
+            <div class="bot-content">
                 <li class="nav-link">
                     <a href="../Registrasi/logout.php">
                         <i class='bx bx-log-out icon'></i>
@@ -86,35 +69,51 @@
         </div>
     </nav>
     <section class="home">
-        <h1><span>Data Finished</span></h1>
-        <table class="content-table">
-                <thead>
+        <h1><span>Data User</span></h1> 
+            <fieldset class="boks">
+                <h2 class="tape"><span>Profile</span></h2>
+                <table class="table-us">
                     <tr>
-                    <th>No.</th>
-                    <th>Nama Anak</th>
-                    <th>Judul</th>
-                    <th>Tanggal Mulai</th>
-                    <th>Tanggal Selesai</th>
-                    <th>Poin</th>
+                        <td>Nama</td>
+                        <td>:</td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($data as $d) :?>
-                    <?php if(!empty($d['tgl_selesai'])): ?>
                     <tr>
-                    <td><?php echo $no++?></td>
-                    <td><?php echo $d['child_name']?></td>
-                    <td><?php echo $d['course_title']?></td>
-                    <td><?php echo date($d['tgl_mulai'])?></td>
-                    <td><?php echo date($d['tgl_selesai'])?></td>
-                    <td><?php echo $d['poin']?> Coins</td>
+                        <td>Username</td>
+                        <td>:</td>
                     </tr>
-                    <?php endif?>
-                    <?php endforeach ?>
-                    </tbody>
-            </table>
-    </section>
+                    <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                    </tr><br>
+                    <tr>
+                        <td>Asal Sekolah</td>
+                        <td>:</td>
+                    </tr>
+                    <tfoot>
+                        <td><a href="#"><button class="btn-secondary">Edit</button></a></td>
+                    </tfoot>
+                </table>
 
+            </fieldset><br/><br/><br/>
+            <fieldset class="boks">
+                <h2 class="tape"><span>Ubah Password</span></h2>
+                <table class="table-us">
+                    <tr>
+                    <td><div class="form">
+                    <input type="password" required>
+                    <label for="">Password Lama</label>
+                    </div>
+                    <div class="form">
+                    <input type="password" required>
+                    <label for="">Password Baru</label>
+                    </div>  </td></tr>
+                    <tfoot>
+                        <td><a href="#"><button class="btn-secondary">Edit</button></a></td>
+                    </tfoot>
+                </table>
+
+            </fieldset>
+    </section>
 <script>
     let btn = document.querySelector(".toggle");
     let sidebar = document.querySelector(".sidebar");
