@@ -72,7 +72,7 @@
             </div>
             <div class="bottom-content">
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="../Registrasi/logout.php">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Log Out</span>
                     </a>

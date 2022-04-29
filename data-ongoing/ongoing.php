@@ -1,5 +1,10 @@
 <?php 
     error_reporting(0);
+    session_start();
+    if(empty($_SESSION['username'])){
+        header('Location: ../Registrasi/login.php');
+        exit();
+    }
 ?>
 <?php 
     require "../includes/connect.php";
@@ -75,7 +80,7 @@
             </div>
             <div class="bottom-content">
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="../Registrasi/logout.php">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Log Out</span>
                     </a>
@@ -106,7 +111,7 @@
                     <td><?php echo date($on['tgl_mulai'])?></td>
                     <td>Ongoing</td>
                     <td>
-                        <a href="../data-finished/finished-list.php?id_ongoing=<?php echo $on ['id_ongoing'];?>"><button class="btn-primary">Finish</button></a>
+                        <a href="../data-finished/finished-list.php?id_ongoing=<?php echo $on['id_ongoing'];?>"><button class="btn-primary">Finish</button></a>
                     </td>
                     </tr>
                     <?php endif ?>

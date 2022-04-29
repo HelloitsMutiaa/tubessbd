@@ -1,6 +1,10 @@
 <?php 
     error_reporting(0);
-    include "list.php";
+    session_start();
+    if(empty($_SESSION['username'])){
+        header('Location: ../Registrasi/login.php');
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,8 +36,8 @@
         <div class="menu_bar">
             <div class="menu">
                 <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="../display/dashboard.php">
+                    <li class="nav-link active">
+                        <a href="dashboard-user.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -51,26 +55,14 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-kursus/kursus.php">
-                            <i class='bx bx-library icon'></i>
-                            <span class="text nav-text">Course</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="../data-ongoing/ongoing.php">
-                            <i class='bx bx-time-five icon'></i>
-                            <span class="text nav-text">Ongoing</span>
-                        </a>
-                    </li>
-                    <li class="nav-link active">
-                        <a href="finished.php">
-                            <i class='bx bx-check icon'></i>
-                            <span class="text nav-text">Finished</span>
+                        <a href="#">
+                            <i class='bx bx-error-circle icon'></i>
+                            <span class="text nav-text">About-us</span>
                         </a>
                     </li>
                 </ul>
             </div>
-            <div class="bottom-content">
+            <div class="bot-content">
                 <li class="nav-link">
                     <a href="../Registrasi/logout.php">
                         <i class='bx bx-log-out icon'></i>
@@ -81,33 +73,30 @@
         </div>
     </nav>
     <section class="home">
-        <h1><span>Data Finished</span></h1>
-        <table class="content-table">
-                <thead>
-                    <tr>
-                    <th>No.</th>
-                    <th>Nama Anak</th>
-                    <th>Judul</th>
-                    <th>Tanggal Mulai</th>
-                    <th>Tanggal Selesai</th>
-                    <th>Poin</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($data as $d) :?>
-                    <?php if(!empty($d['tgl_selesai'])): ?>
-                    <tr>
-                    <td><?php echo $no++?></td>
-                    <td><?php echo $d['child_name']?></td>
-                    <td><?php echo $d['course_title']?></td>
-                    <td><?php echo date($d['tgl_mulai'])?></td>
-                    <td><?php echo date($d['tgl_selesai'])?></td>
-                    <td><?php echo $d['poin']?> Coins</td>
-                    </tr>
-                    <?php endif?>
-                    <?php endforeach ?>
-                    </tbody>
+        <div class="pict"><img src="../assets/img/pict 1.png" alt=""/></div>
+        <div class="container">
+            <table class="elementscontainer">
+                <tr>
+                    <td>
+                        <input type="text" placeholder="Search" class="search">
+                    </td>
+                    <td>
+                        <a href="#">
+                            <i class="bx bx-search"></i>
+                        </a>
+                    </td>
+                </tr>
             </table>
+        </div>
+    </div>
+
+    <div class="images">
+        <div class="image-box">
+            <img src="" alt="">
+            <h6></h6>
+        </div>
+        </div>
+    </div>
     </section>
 
 <script>

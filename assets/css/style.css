@@ -176,6 +176,12 @@ header .image-text .header-text{
     display: block;
 }
 
+.sidebar .bot-content{
+    margin: 180px auto ;
+    position: static;
+    display: block;
+}
+
 .home{
     position: relative;
     left: 250px;

@@ -1,5 +1,11 @@
 <?php 
     error_reporting(0);
+    include "../includes/connect.php";
+    session_start();
+    if (($_SESSION['nama_level']) !== 'admin') {
+        header('Location: dashboard-user.php');
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +77,7 @@
             </div>
             <div class="bottom-content">
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="../Registrasi/logout.php">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Log Out</span>
                     </a>
