@@ -116,8 +116,8 @@
                         </td>
                         <td><?php echo $data['nama_level']?></td>
                         <td>
-                            <a href="user-edit.php"><button class="btn-primary">Edit</button></a>
-                            <a href="hapus_user.php?nama=<?php echo $data ['nama_user']; ?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
+                            <a href="user-edit.php?id=<?php echo $data['id_user'];?>"><button class="btn-primary">Edit</button></a>
+                            <a href="hapus_user.php?id=<?php echo $data['id_user']; ?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
                         </td>
                     </tr>
                     <?php endforeach ?>
