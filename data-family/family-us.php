@@ -1,5 +1,6 @@
 <?php 
     error_reporting(0);
+    include "family-list.php";
     session_start();
     if(empty($_SESSION['username'])){
         header('Location: ../Registrasi/login.php');
@@ -36,26 +37,26 @@
         <div class="menu_bar">
             <div class="menu">
                 <ul class="menu-links">
-                    <li class="nav-link active">
-                        <a href="dashboard-user.php">
+                    <li class="nav-link">
+                        <a href="../display/dashboard-user.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-user/user.php">
+                        <a href="../data-user/user-us.php">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">User</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a href="../data-family/family.php">
+                    <li class="nav-link active">
+                        <a href="family-us.php">
                             <i class='bx bx-heart icon'></i>
                             <span class="text nav-text">Family</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="../data-kursus/kursus.php">
                             <i class='bx bx-error-circle icon'></i>
                             <span class="text nav-text">About-us</span>
                         </a>
@@ -73,30 +74,48 @@
         </div>
     </nav>
     <section class="home">
-        <div class="pict"><img src="../assets/img/pict 1.png" alt=""/></div>
-        <div class="container">
-            <table class="elementscontainer">
-                <tr>
-                    <td>
-                        <input type="text" placeholder="Search" class="search">
+        <h1><span>Data Keluarga</span></h1>
+        <table class="content-table">
+                <thead>
+                    <tr>
+                    <th>Nama</th>
+                    <th>Username</th>
+                    <th>Ongoing</th>
+                    <th>Finished</th>
+                    <th>Coins</th>
+                    <th>Pilihan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($data_childs as $data): ?>
+                    <tr>
+                    <input type="hidden" name="id" value="<?php echo $data['id_child']?>"> 
+                    <td><?php echo $data['child_name']?></td>
+                    <td><?php echo $data['child_uname']?></td>
+                    <td><?php echo $data['child_lahir']?></td>
+                    <td><?php echo $data['nama_user']?></td>
+                    <td><?php 
+                            if(empty($data['child_school']))
+                            {
+                                echo "-";
+                            } else {
+                                echo $data['child_school'];
+                            }
+                        ?>
                     </td>
                     <td>
-                        <a href="#">
-                            <i class="bx bx-search"></i>
-                        </a>
+                        <a href="family-edit.php?id_child=<?php echo $data['id_child']?>"><button class="btn-primary">Edit</button></a>
+                        <a href="family-hapus.php?id_child=<?php echo $data['id_child']?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
                     </td>
-                </tr>
+                    </tr>
+                    <?php endforeach?>
+                    </tbody>
             </table>
-        </div>
-    </div>
-
-    <div class="images">
-        <div class="image-box">
-            <img src="" alt="">
-            <h6></h6>
-        </div>
-        </div>
-    </div>
+            <table class="table-ch">
+                    <tfoot>
+                        <td><a href="family-add.php"><button class="btn-secondary">Tambah</button></a></td>
+                    </tfoot>
+            </table>
     </section>
 
 <script>

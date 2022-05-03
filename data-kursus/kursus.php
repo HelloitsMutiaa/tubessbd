@@ -120,8 +120,11 @@ include "kursus-list.php";
                     </tbody>
             </table>
 
-            <div class="add">
-            <a href="kursus-tambah.php"><button class="btn-secondary">Tambah</button></a>
+            <table class="table-ch">
+                    <tfoot>
+                        <td><a href="kursus-tambah.php"><button class="btn-secondary">Tambah</button></a></td>
+                    </tfoot>
+            </table>
             
             </div>
     </section>

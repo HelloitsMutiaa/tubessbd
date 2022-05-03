@@ -342,7 +342,8 @@ header .image-text .header-text{
     background: var(--sidebar-color);
 }
 
-.table-us{
+.table-us,
+.table-ch{
     position:static;
     border-collapse: separate;
     font-size: 20px;
@@ -353,6 +354,11 @@ header .image-text .header-text{
 
 .table-us td{
     width: 290px;
+    padding: 10px 0;
+}
+
+.table-ch td{
+    width: 150px;
     padding: 10px 0;
 }
 

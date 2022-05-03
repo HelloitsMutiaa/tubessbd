@@ -179,7 +179,7 @@
         echo "<script>window.alert('Data Berhasil di Update')
         window.location='kursus.php'</script>";
     } else {
-      echo "koneksi gagal" .mysqli_error($db);
+      echo "koneksi gagal" .mysqli_error($dtb);
     }
     }
     

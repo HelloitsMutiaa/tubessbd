@@ -49,6 +49,26 @@
                             <span class="text nav-text">Family</span>
                         </a>
                     </li>
+                    <?php 
+                    session_start();
+                    if(($_SESSION['nama_level']) !== 'admin'): ?>
+                        <li class="nav-link">
+                        <a href="../data-kursus/kursus.php">
+                            <i class='bx bx-error-circle icon'></i>
+                            <span class="text nav-text">About-us</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bot-content">
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Log Out</span>
+                    </a>
+                </li>
+            </div>
+                <?php else :?>
                     <li class="nav-link">
                         <a href="../data-kursus/kursus.php">
                             <i class='bx bx-library icon'></i>
@@ -78,6 +98,7 @@
                 </li>
             </div>
         </div>
+        <?php endif?>
     </nav>
     <?php
     include "../includes/connect.php";

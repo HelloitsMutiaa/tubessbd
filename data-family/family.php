@@ -2,10 +2,9 @@
     error_reporting(0);
     include "family-list.php";
     session_start();
-    if(empty($_SESSION['username'])){
-        header('Location: ../Registrasi/login.php');
-        exit();
-    }
+    if (($_SESSION['nama_level']) !== 'admin') {
+        header('Location: family-us.php');
+        exit(); }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,14 +99,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
                     <?php foreach($data_childs as $data): ?>
+                    <tr>
                     <td><?php echo $no++ ?></td>
                     <td><?php echo $data['child_name']?></td>
                     <td><?php echo $data['child_uname']?></td>
                     <td><?php echo $data['child_lahir']?></td>
                     <td><?php echo $data['nama_user']?></td>
-                    <td><?php echo $data['child_school']?></td>
+                    <td><?php 
+                            if(empty($data['child_school']))
+                            {
+                                echo "-";
+                            } else {
+                                echo $data['child_school'];
+                            }
+                        ?>
+                    </td>
                     <td>
                         <a href="family-edit.php?id_child=<?php echo $data['id_child']?>"><button class="btn-primary">Edit</button></a>
                         <a href="family-hapus.php?id_child=<?php echo $data['id_child']?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>

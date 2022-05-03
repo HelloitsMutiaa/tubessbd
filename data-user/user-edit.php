@@ -1,5 +1,13 @@
 <?php
     error_reporting(0);
+    include "../includes/connect.php";
+    $id_user = $_GET['id'];
+    $display = "SELECT user.*, level.id_level, level.nama_level
+                FROM user
+                JOIN level ON user.id_level=level.id_level
+                WHERE user.id_user=$id_user";
+    $hasil = mysqli_query($dtb, $display);
+    $data= mysqli_fetch_assoc($hasil);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +56,26 @@
                             <span class="text nav-text">Family</span>
                         </a>
                     </li>
+                    <?php 
+                    session_start();
+                    if(($_SESSION['nama_level']) !== 'admin'): ?>
+                        <li class="nav-link">
+                        <a href="../data-kursus/kursus.php">
+                            <i class='bx bx-error-circle icon'></i>
+                            <span class="text nav-text">About-us</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bot-content">
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Log Out</span>
+                    </a>
+                </li>
+            </div>
+                <?php else :?>
                     <li class="nav-link">
                         <a href="../data-kursus/kursus.php">
                             <i class='bx bx-library icon'></i>
@@ -77,32 +105,67 @@
                 </li>
             </div>
         </div>
+        <?php endif?>
     </nav>
     <section class="home">
+        <form action="" method="POST">
         <h1><span>Edit Data User</span></h1> 
         <fieldset class="box">
+            <input type="hidden" name="id" value="<?php echo $id_user; ?>">
          <div class="form">
-             <input type="text" required>
+             <input type="text" required name="nama" value="<?php echo $data['nama_user']?>">
              <label for="">Nama</label>
          </div>  
          <div class="form">
-             <input type="text" required>
+             <input type="text" required name="username" value="<?php echo $data['username']?>">
              <label for="">Username</label>
          </div>  
          <div class="form">
-             <input type="text" required>
+             <input type="text" required name="email" value="<?php echo $data['email']?>">
              <label for="">Email</label>
          </div>  
+         <?php if(!empty($data['asal_sekolah'])): ?>
          <div class="form">
-             <input type="text" required>
+             <input type="text" required name="asal" value="<?php echo $data['asal_sekolah']?>">
              <label for="">Asal Sekolah</label>
-         </div>  
+         </div> 
+         <?php else :?> 
+         <?php endif?>
          <br/>
          <div class="add2">
-             <a href="#"><button class="btn-secondary">Submit</button></a> 
+             <a href="#"><button class="btn-secondary" name="submit">Submit</button></a> 
          </div>
          </fieldset> 
+         </form>
     </section>
+
+    <?php 
+    
+    if(isset($_POST['submit']))
+    {
+        $id = $_POST['id'];
+        $nama = $_POST['nama'];
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $asal = $_POST['asal'];
+
+        $query = "UPDATE user
+                SET nama_user = '$nama',
+                username = '$username',
+                email = '$email',
+                asal_sekolah = '$asal'
+                WHERE id_user=$id";
+        $result = mysqli_query($dtb, $query);
+        if($result == true)
+        {
+            echo "<script>window.alert('Data Berhasil di Update')
+            window.location='user.php'</script>";
+        } else {
+            echo "koneksi gagal" .mysqli_error($dtb);
+        }
+    }
+    
+    ?>
 <script>
     let btn = document.querySelector(".toggle");
     let sidebar = document.querySelector(".sidebar");

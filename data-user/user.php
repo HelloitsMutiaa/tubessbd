@@ -1,11 +1,9 @@
 <?php
     error_reporting();
     include "user-list.php";
-    session_start();
-    if(empty($_SESSION['username'])){
-        header('Location: ../Registrasi/login.php');
-        exit();
-    }
+    if (($_SESSION['nama_level']) !== 'admin') {
+        header('Location: user-us.php');
+        exit(); }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,7 +115,7 @@
                         <td><?php echo $data['nama_level']?></td>
                         <td>
                             <a href="user-edit.php?id=<?php echo $data['id_user'];?>"><button class="btn-primary">Edit</button></a>
-                            <a href="hapus_user.php?id=<?php echo $data['id_user']; ?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
+                            <a href="user-delete.php?id=<?php echo $data['id_user']; ?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
                         </td>
                     </tr>
                     <?php endforeach ?>

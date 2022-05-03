@@ -1,6 +1,7 @@
 <?php
     error_reporting();
     include "user-list.php";
+    include "../includes/connect.php";
     
 ?>
 <!DOCTYPE html>
@@ -11,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css?<?php echo time();?>">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/6b104fdfc3.js" crossorigin="anonymous"></script>
     <title>BookR</title>
 </head>
 <body>
@@ -45,7 +47,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-family/family.php">
+                        <a href="../data-family/family-us.php">
                             <i class='bx bx-heart icon'></i>
                             <span class="text nav-text">Family</span>
                         </a>
@@ -73,47 +75,88 @@
             <fieldset class="boks">
                 <h2 class="tape"><span>Profile</span></h2>
                 <table class="table-us">
+                <input type="hidden" name="id" value="<?php echo $data['id_user']?>">
                     <tr>
                         <td>Nama</td>
-                        <td>:</td>
+                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['nama_user']?></td>
                     </tr>
                     <tr>
                         <td>Username</td>
-                        <td>:</td>
+                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['username']?></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td>:</td>
+                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['email']?></td>
                     </tr><br>
+                    <?php if(!empty($data['asal_sekolah'])): ?>
                     <tr>
                         <td>Asal Sekolah</td>
-                        <td>:</td>
+                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['asal_sekolah']?></td>
                     </tr>
+                    <?php else:?>
+                    <?php endif?>
                     <tfoot>
-                        <td><a href="#"><button class="btn-secondary">Edit</button></a></td>
+                        <td><a href="user-edit.php?id=<?php echo $data['id_user']?>"><button class="btn-secondary">Edit</button></a></td>
                     </tfoot>
                 </table>
 
             </fieldset><br/><br/><br/>
+
+           <form action="" method="POST">
             <fieldset class="boks">
                 <h2 class="tape"><span>Ubah Password</span></h2>
                 <table class="table-us">
+                    <input type="hidden" name="id" value="<?php echo $data['id_user']?>">
                     <tr>
-                    <td><div class="form">
-                    <input type="password" required>
-                    <label for="">Password Lama</label>
-                    </div>
-                    <div class="form">
-                    <input type="password" required>
-                    <label for="">Password Baru</label>
-                    </div>  </td></tr>
+                    <td>
+                        <div class="form">
+                            <input type="password" name="lama" id="pwd" required/>
+                            <label for="">Password Lama</label>
+                            <div class="input-group-append">
+                                <i class="fa fa-eye-slash" id="icon"></i>
+                            </div>
+                        </div> 
+                        <div class="form">
+                            <input type="password" name="baru" id="konfig" required/>
+                            <label for="">Password Baru</label>
+                            <div class="input-group-append">
+                                <i class="fa fa-eye-slash" id="eye" ></i>
+                            </div>
+                        </div>   
+                    </td></tr>
                     <tfoot>
-                        <td><a href="#"><button class="btn-secondary">Edit</button></a></td>
+                        <td><a href="#"><button class="btn-secondary" name="submit">Edit</button></a></td>
                     </tfoot>
                 </table>
-
             </fieldset>
+            </form> 
     </section>
+    <?php 
+        if(isset($_POST['submit']))
+        {
+            $id = $_POST['id'];
+            $lama = md5($_POST['lama']);
+
+            if($lama !== $data['pass_user']){
+                echo "<script>window.alert('Password Lama Salah!')
+                window.location='user-us.php'</script>";
+                return false;
+            } else {
+                $baru = md5($_POST['baru']);
+                $query = "UPDATE user
+                        SET pass_user='$baru'
+                        WHERE id_user=$id";
+                $result = mysqli_query($dtb, $query);
+                if($result == true){
+                    echo "<script>window.alert('Password Berhasil di Update')
+                    window.location='user-us.php'</script>";
+                } else {
+                    echo "Koneksi gagal" .mysqli_errno($dtb);
+                }
+            }
+        }
+    ?>
+
 <script>
     let btn = document.querySelector(".toggle");
     let sidebar = document.querySelector(".sidebar");
@@ -122,6 +165,7 @@
         sidebar.classList.toggle("close");
     }
 </script>
+<script src="../assets/js/show.js"></script>
 
 </body>
 </html>
