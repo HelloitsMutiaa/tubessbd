@@ -87,6 +87,7 @@
     </nav>
     <section class="home">
         <h1><span>Data Finished</span></h1>
+        <form action="" method="POST">
         <table class="content-table">
                 <thead>
                     <tr>
@@ -96,23 +97,30 @@
                     <th>Tanggal Mulai</th>
                     <th>Tanggal Selesai</th>
                     <th>Poin</th>
+                    <th>Pilihan</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach($data as $d) :?>
                     <?php if(!empty($d['tgl_selesai'])): ?>
                     <tr>
+                    <input type="hidden" name="ids" value="<?php echo $d['id_selesai']?>">
+                    <input type="hidden" name="ido" value="<?php echo $d['id_ongoing']?>">
                     <td><?php echo $no++?></td>
                     <td><?php echo $d['child_name']?></td>
                     <td><?php echo $d['course_title']?></td>
                     <td><?php echo date($d['tgl_mulai'])?></td>
                     <td><?php echo date($d['tgl_selesai'])?></td>
                     <td><?php echo $d['poin']?> Coins</td>
+                    <td>
+                        <a href="finished-delete.php?ido=<?php echo $d['id_ongoing']?>ids=<?php echo $d['id_selesai'];?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
+                    </td>
                     </tr>
                     <?php endif?>
                     <?php endforeach ?>
                     </tbody>
             </table>
+        </form>
     </section>
 
 <script>

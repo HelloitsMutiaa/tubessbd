@@ -130,11 +130,13 @@
                 $id = $_POST['id'];
                 $selesai = $_POST['selesai'];
                 $poin = 40;
-
-                $query2 = "INSERT INTO selesai (id_ongoing, tgl_selesai, poin)
+                
+                $status = "Selesai";
+                $query2 = "UPDATE ongoing SET status='$status' WHERE id_ongoing=$id;";
+                $query2 .= "INSERT INTO selesai(id_ongoing, tgl_selesai, poin)
                 VALUES ($id, '$selesai', $poin)";
 
-                $hasil2 = mysqli_query($dtb, $query2);
+                $hasil2 = mysqli_multi_query($dtb, $query2);
                 if($hasil2 == true)
                 {
                     echo "<script>window.alert('Data Berhasil di Tambah')

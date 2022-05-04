@@ -68,6 +68,7 @@
                 $_SESSION['nama_user'] = $nama;
                 $_SESSION['id_user'] = $id_user;
                 $_SESSION['nama_level'] = $level;
+                $_SESSION['asal_sekolah'] = $asal;
             }else {
                 echo "<script>window.alert('User Tidak Ditemukan')
                 window.location='login.php'</script>";

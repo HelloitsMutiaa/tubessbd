@@ -6,6 +6,7 @@
         header('Location: ../Registrasi/login.php');
         exit();
     }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,17 +93,31 @@
                     <input type="hidden" name="id" value="<?php echo $data['id_child']?>"> 
                     <td><?php echo $data['child_name']?></td>
                     <td><?php echo $data['child_uname']?></td>
-                    <td><?php echo $data['child_lahir']?></td>
-                    <td><?php echo $data['nama_user']?></td>
-                    <td><?php 
-                            if(empty($data['child_school']))
-                            {
-                                echo "-";
-                            } else {
-                                echo $data['child_school'];
-                            }
-                        ?>
-                    </td>
+                    <?php 
+                         $id = $data['id_child'];
+                         $status = " ";
+                         include "../includes/connect.php";
+                         $query = "SELECT ongoing.*, ongoing.id_ongoing, childs.id_child, childs.child_name, course.id_course, course.course_title,
+                                 (SELECT tgl_selesai FROM selesai WHERE selesai.id_ongoing=ongoing.id_ongoing)as tgl_selesai
+                                 FROM ongoing
+                                 JOIN childs ON ongoing.id_child=childs.id_child
+                                 JOIN course ON ongoing.id_course=course.id_course
+                                 WHERE (ongoing.id_child=$id) AND (ongoing.status='$status')";
+                         $hasil = mysqli_query($dtb, $query);
+                         $ongoing = mysqli_num_rows($hasil);
+
+                         $query2 = "SELECT selesai.*, selesai.id_selesai, ongoing.id_ongoing, ongoing.id_child
+                                    FROM selesai
+                                    JOIN ongoing ON selesai.id_ongoing=ongoing.id_ongoing
+                                    WHERE ongoing.id_child=$id";
+                         $hasil2 = mysqli_query($dtb, $query2);
+                         $finished = mysqli_num_rows($hasil2);
+
+                         $coins = $finished * 40;
+                    ?>
+                    <td><?php echo $ongoing;?></td>
+                    <td><?php echo $finished;?></td>
+                    <td><?php echo $coins;?></td>
                     <td>
                         <a href="family-edit.php?id_child=<?php echo $data['id_child']?>"><button class="btn-primary">Edit</button></a>
                         <a href="family-hapus.php?id_child=<?php echo $data['id_child']?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>

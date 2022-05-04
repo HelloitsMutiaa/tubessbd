@@ -107,11 +107,11 @@
                     <td><?php echo $data['child_lahir']?></td>
                     <td><?php echo $data['nama_user']?></td>
                     <td><?php 
-                            if(empty($data['child_school']))
+                            if(empty($data['school']))
                             {
                                 echo "-";
                             } else {
-                                echo $data['child_school'];
+                                echo $data['school'];
                             }
                         ?>
                     </td>

@@ -104,6 +104,32 @@
         </form>
     </section>
 
+    <?php 
+    include "../includes/connect.php";
+    if(isset($_POST['submit'])){
+        $nama = $_POST['nama'];
+        $username = $_POST['uname'];
+        $lahir = $_POST['date'];
+        $asal = $_SESSION['asal_sekolah'];
+        $password = $_POST['pass'];
+        $level = 4;
+        $wali = $_SESSION['id_user'];
+
+        $query = "INSERT INTO childs(child_name, child_uname, child_pass, child_lahir, school, id_level, id_user)
+                VALUES('$nama', '$username', '$password', '$lahir', '$asal', $level, $wali)";
+        $hasil = mysqli_query($dtb, $query);
+        if($hasil == true)
+        {
+            echo "<script>window.alert('One Child was Added')
+            window.location='family-us.php'</script>";
+        } else {
+            echo "Koneksi Gagal" .mysqli_errno($dtb);
+        }
+    }
+    
+    
+    ?>
+
 <script>
     let btn = document.querySelector(".toggle");
     let sidebar = document.querySelector(".sidebar");
