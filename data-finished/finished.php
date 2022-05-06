@@ -97,7 +97,6 @@
                     <th>Tanggal Mulai</th>
                     <th>Tanggal Selesai</th>
                     <th>Poin</th>
-                    <th>Pilihan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -112,9 +111,6 @@
                     <td><?php echo date($d['tgl_mulai'])?></td>
                     <td><?php echo date($d['tgl_selesai'])?></td>
                     <td><?php echo $d['poin']?> Coins</td>
-                    <td>
-                        <a href="finished-delete.php?ido=<?php echo $d['id_ongoing']?>ids=<?php echo $d['id_selesai'];?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
-                    </td>
                     </tr>
                     <?php endif?>
                     <?php endforeach ?>

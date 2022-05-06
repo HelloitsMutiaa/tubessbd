@@ -182,6 +182,36 @@ header .image-text .header-text{
     display: block;
 }
 
+.tc{
+    margin: 50px auto;
+    text-align: center;
+    max-width: 600px;
+    position: relative;
+    color: var(--text-color);
+}
+
+.tc::before{
+    content: "";
+    display: block;
+    width: 140px;
+    height: 4px;
+    background: var(--text-color);
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+
+.tc::after{
+    content: "";
+    display: block;
+    width: 140px;
+    height: 4px;
+    background: var(--text-color);
+    position: absolute;
+    top: 50%;
+    right: 0;
+}
+
 .home{
     position: relative;
     left: 250px;
@@ -313,6 +343,7 @@ header .image-text .header-text{
                 0 0 60px var(--primary-color-light),
                 0 0 150px var(--primary-color-light);
 }
+
 
 .add{
     position: static;
@@ -565,6 +596,14 @@ header .image-text .header-text{
 
 .fp-table{
     margin-left: 530px;
+}
+
+.fc-table{
+    position: relative;
+    border-collapse: collapse;
+    max-width: max-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .input-group-append {

@@ -118,9 +118,11 @@
                     <?php endforeach ?>
                     </tbody>
             </table>
-            <div class="add">
-            <a href="ongoing-tambah.php"><button class="btn-secondary">Tambah</button></a>
-            </div>
+            <table class="table-ch">
+                    <tfoot>
+                        <td><a href="ongoing-tambah.php"><button class="btn-secondary">Tambah</button></a></td>
+                    </tfoot>
+            </table>
     </section>
 
 <script>
