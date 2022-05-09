@@ -3,7 +3,7 @@
     include "../includes/connect.php";
     session_start();
     if (($_SESSION['nama_level']) !== 'admin') {
-        header('Location: ../Registrasi/login-as.php');
+        header('Location: dashboard-user.php');
         exit();
     }
     include "../data-kursus/kursus-list.php";
