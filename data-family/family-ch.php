@@ -1,11 +1,20 @@
 <?php
     error_reporting();
-    include "user-list.php";
     include "../includes/connect.php";
+
+    session_start();
     if(empty($_SESSION['username'])){
         header('Location: ../Registrasi/login.php');
         exit();
     }
+
+    $id = $_SESSION['id_user'];
+    $query = "SELECT childs.*, user.id_user, user.nama_user
+            FROM childs
+            JOIN user ON childs.id_user=user.id_user
+            WHERE user.id_user=$id";
+    $hasil = mysqli_query($dtb, $query);
+    $data = mysqli_fetch_assoc($hasil);
     
 ?>
 <!DOCTYPE html>
@@ -39,21 +48,21 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="../display/dashboard.php">
+                        <a href="../display/dashboard-child.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-link active">
-                        <a href="user-us.php">
+                        <a href="family-ch.php">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">My Profile</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-family/family-us.php">
+                        <a href="#">
                             <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text"> My Family</span>
+                            <span class="text nav-text"> My Course</span>
                         </a>
                     </li>
                     <li class="nav-link">
@@ -79,28 +88,28 @@
             <fieldset class="boks">
                 <h2 class="tape"><span>Profile</span></h2>
                 <table class="table-us">
-                <input type="hidden" name="id" value="<?php echo $data['id_user']?>">
+                <input type="hidden" name="id" value="<?php echo $data['id_child']?>">
                     <tr>
                         <td>Nama</td>
-                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['nama_user']?></td>
+                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['child_name']?></td>
                     </tr>
                     <tr>
                         <td>Username</td>
-                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['username']?></td>
+                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['child_uname']?></td>
                     </tr>
                     <tr>
-                        <td>Email</td>
-                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['email']?></td>
+                        <td>Tanggal Lahir</td>
+                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['child_lahir']?></td>
                     </tr><br>
-                    <?php if(!empty($data['asal_sekolah'])): ?>
+                    <?php if(!empty($data['school'])): ?>
                     <tr>
                         <td>Asal Sekolah</td>
-                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['asal_sekolah']?></td>
+                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['school']?></td>
                     </tr>
                     <?php else:?>
                     <?php endif?>
                     <tfoot>
-                        <td><a href="user-edit.php?id=<?php echo $data['id_user']?>"><button class="btn-secondary">Edit</button></a></td>
+                        <td><a href="family-edit2.php?id_child=<?php echo $data['id_child']?>"><button class="btn-secondary">Edit</button></a></td>
                     </tfoot>
                 </table>
 
@@ -110,7 +119,7 @@
             <fieldset class="boks">
                 <h2 class="tape"><span>Ubah Password</span></h2>
                 <table class="table-us">
-                    <input type="hidden" name="id" value="<?php echo $data['id_user']?>">
+                    <input type="hidden" name="id" value="<?php echo $data['id_child']?>">
                     <tr>
                     <td>
                         <div class="form">
@@ -141,19 +150,19 @@
             $id = $_POST['id'];
             $lama = md5($_POST['lama']);
 
-            if($lama !== $data['pass_user']){
+            if($lama !== $data['child_pass']){
                 echo "<script>window.alert('Password Lama Salah!')
-                window.location='user-us.php'</script>";
+                window.location='family-ch.php'</script>";
                 return false;
             } else {
                 $baru = md5($_POST['baru']);
-                $query = "UPDATE user
-                        SET pass_user='$baru'
-                        WHERE id_user=$id";
+                $query = "UPDATE childs
+                        SET child_pass='$baru'
+                        WHERE id_child=$id";
                 $result = mysqli_query($dtb, $query);
                 if($result == true){
                     echo "<script>window.alert('Password Berhasil di Update')
-                    window.location='user-us.php'</script>";
+                    window.location='family-ch.php'</script>";
                 } else {
                     echo "Koneksi gagal" .mysqli_errno($dtb);
                 }

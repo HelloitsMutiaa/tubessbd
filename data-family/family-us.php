@@ -47,17 +47,17 @@
                     <li class="nav-link">
                         <a href="../data-user/user-us.php">
                             <i class='bx bx-user icon'></i>
-                            <span class="text nav-text">User</span>
+                            <span class="text nav-text">My Profile</span>
                         </a>
                     </li>
                     <li class="nav-link active">
                         <a href="family-us.php">
                             <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Family</span>
+                            <span class="text nav-text">My Family</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-kursus/kursus.php">
+                        <a href="#">
                             <i class='bx bx-error-circle icon'></i>
                             <span class="text nav-text">About-us</span>
                         </a>

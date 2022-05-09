@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-kursus/kursus.php">
+                        <a href="#">
                             <i class='bx bx-error-circle icon'></i>
                             <span class="text nav-text">About-us</span>
                         </a>
@@ -65,7 +65,7 @@
             </div>
             <div class="bot-content">
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="../Registrasi/logout.php">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Log Out</span>
                     </a>

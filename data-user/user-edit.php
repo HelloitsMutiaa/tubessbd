@@ -1,6 +1,11 @@
 <?php
     error_reporting(0);
     include "../includes/connect.php";
+    session_start();
+    if(empty($_SESSION['username'])){
+        header('Location: ../Registrasi/login.php');
+        exit();
+    }
     $id_user = $_GET['id'];
     $display = "SELECT user.*, level.id_level, level.nama_level
                 FROM user
@@ -44,6 +49,38 @@
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
+                    <?php 
+                    session_start();
+                    if(($_SESSION['nama_level']) !== 'admin'): ?>
+                    <li class="nav-link active">
+                        <a href="user.php">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">My Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="../data-family/family.php">
+                            <i class='bx bx-heart icon'></i>
+                            <span class="text nav-text">My Family</span>
+                        </a>
+                    </li>
+                        <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-error-circle icon'></i>
+                            <span class="text nav-text">About-us</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bot-content">
+                <li class="nav-link">
+                    <a href="../Registrasi/logout.php">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Log Out</span>
+                    </a>
+                </li>
+            </div>
+                <?php else :?>
                     <li class="nav-link active">
                         <a href="user.php">
                             <i class='bx bx-user icon'></i>
@@ -56,26 +93,6 @@
                             <span class="text nav-text">Family</span>
                         </a>
                     </li>
-                    <?php 
-                    session_start();
-                    if(($_SESSION['nama_level']) !== 'admin'): ?>
-                        <li class="nav-link">
-                        <a href="../data-kursus/kursus.php">
-                            <i class='bx bx-error-circle icon'></i>
-                            <span class="text nav-text">About-us</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="bot-content">
-                <li class="nav-link">
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Log Out</span>
-                    </a>
-                </li>
-            </div>
-                <?php else :?>
                     <li class="nav-link">
                         <a href="../data-kursus/kursus.php">
                             <i class='bx bx-library icon'></i>
@@ -98,7 +115,7 @@
             </div>
             <div class="bottom-content">
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="../Registrasi/logout.php">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Log Out</span>
                     </a>

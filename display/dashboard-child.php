@@ -1,9 +1,9 @@
 <?php 
     error_reporting(0);
-    include "../includes/connect.php";
+    include "../data-kursus/kursus-list.php";
     session_start();
-    if (($_SESSION['nama_level']) !== 'admin') {
-        header('Location: ../Registrasi/login-as.php');
+    if(empty($_SESSION['username'])){
+        header('Location: ../Registrasi/login.php');
         exit();
     }
     include "../data-kursus/kursus-list.php";
@@ -39,44 +39,32 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link active">
-                        <a href="dashboard.php">
+                        <a href="dashboard-child.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-user/user.php">
+                        <a href="../data-family/family-ch.php">
                             <i class='bx bx-user icon'></i>
-                            <span class="text nav-text">User</span>
+                            <span class="text nav-text">My Profile</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-family/family.php">
+                        <a href="#">
                             <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Family</span>
+                            <span class="text nav-text">My Course</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-kursus/kursus.php">
-                            <i class='bx bx-library icon'></i>
-                            <span class="text nav-text">Course</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="../data-ongoing/ongoing.php">
-                            <i class='bx bx-time-five icon'></i>
-                            <span class="text nav-text">Ongoing</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="../data-finished/finished.php">
-                            <i class='bx bx-check icon'></i>
-                            <span class="text nav-text">Finished</span>
+                        <a href="#">
+                            <i class='bx bx-error-circle icon'></i>
+                            <span class="text nav-text">About-us</span>
                         </a>
                     </li>
                 </ul>
             </div>
-            <div class="bottom-content">
+            <div class="bot-content">
                 <li class="nav-link">
                     <a href="../Registrasi/logout.php">
                         <i class='bx bx-log-out icon'></i>
@@ -107,7 +95,6 @@
     <div class="images">
         <?php foreach($data_kursus as $data): ?>
         <div class="image-box">
-            <input type="hidden" value="<?php echo $data['id_course']?>">
             <img src="../data-kursus/cover/<?php echo $data['course_cover']?>" alt="">
             <h6><?php echo $data['course_title']?></h6>
         </div>

@@ -37,27 +37,24 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="../display/dashboard.php">
+                        <a href="../display/dashboard-child.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <?php 
-                    session_start();
-                    if(($_SESSION['nama_level']) !== 'admin'): ?>
-                    <li class="nav-link">
-                        <a href="../data-user/user.php">
+                    <li class="nav-link active">
+                        <a href="family-ch.php">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">My Profile</span>
                         </a>
                     </li>
-                    <li class="nav-link active">
-                        <a href="family.php">
+                    <li class="nav-link">
+                        <a href="family-edit2.php">
                             <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">My Family</span>
+                            <span class="text nav-text"> My Course</span>
                         </a>
                     </li>
-                        <li class="nav-link">
+                    <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-error-circle icon'></i>
                             <span class="text nav-text">About-us</span>
@@ -72,50 +69,8 @@
                         <span class="text nav-text">Log Out</span>
                     </a>
                 </li>
-            </div>
-                <?php else :?>
-                    <li class="nav-link">
-                        <a href="../data-user/user.php">
-                            <i class='bx bx-user icon'></i>
-                            <span class="text nav-text">User</span>
-                        </a>
-                    </li>
-                    <li class="nav-link active">
-                        <a href="family.php">
-                            <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Family</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="../data-kursus/kursus.php">
-                            <i class='bx bx-library icon'></i>
-                            <span class="text nav-text">Course</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="../data-ongoing/ongoing.php">
-                            <i class='bx bx-time-five icon'></i>
-                            <span class="text nav-text">Ongoing</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="../data-finished/finished.php">
-                            <i class='bx bx-check icon'></i>
-                            <span class="text nav-text">Finished</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="bottom-content">
-                <li class="nav-link">
-                    <a href="../Registrasi/logout.php">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Log Out</span>
-                    </a>
-                </li>
-            </div>
+            </div>      
         </div>
-        <?php endif?>
     </nav>
     <?php
     include "../includes/connect.php";
@@ -167,7 +122,7 @@
         $hasil2 = mysqli_query($dtb, $query2);
         if($hasil2 == true){
             echo "<script>window.alert('Data Berhasil di Update')
-                 window.location='family.php'</script>";
+                 window.location='family-ch.php'</script>";
         }else {
             echo "Koneksi Gagal" .mysqli_error($dtb);
         }

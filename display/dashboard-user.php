@@ -5,6 +5,7 @@
         header('Location: ../Registrasi/login.php');
         exit();
     }
+    include "../data-kursus/kursus-list.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,13 +46,13 @@
                     <li class="nav-link">
                         <a href="../data-user/user.php">
                             <i class='bx bx-user icon'></i>
-                            <span class="text nav-text">User</span>
+                            <span class="text nav-text">My Profile</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="../data-family/family.php">
                             <i class='bx bx-heart icon'></i>
-                            <span class="text nav-text">Family</span>
+                            <span class="text nav-text">My Family</span>
                         </a>
                     </li>
                     <li class="nav-link">
@@ -91,10 +92,12 @@
     </div>
 
     <div class="images">
+        <?php foreach($data_kursus as $data): ?>
         <div class="image-box">
-            <img src="" alt="">
-            <h6></h6>
+            <img src="../data-kursus/cover/<?php echo $data['course_cover']?>" alt="">
+            <h6><?php echo $data['course_title']?></h6>
         </div>
+        <?php endforeach?>
         </div>
     </div>
     </section>
