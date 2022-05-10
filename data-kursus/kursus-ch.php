@@ -1,22 +1,17 @@
 <?php
     error_reporting();
     include "../includes/connect.php";
+    $id = $_GET['id'];
+    $idc = $_GET['id_child'];
+    $query = mysqli_query($dtb, "SELECT course.*, kategori.kategori_nama
+            FROM course
+            LEFT JOIN kategori ON kategori.id_kategori = course.id_kategori
+            WHERE course.id_course=$id");
+    $data = mysqli_fetch_assoc($query);
 
-    session_start();
-    if(empty($_SESSION['username'])){
-        header('Location: ../Registrasi/login.php');
-        exit();
-    }
-
-    $id = $_SESSION['id_user'];
-    $query = "SELECT childs.*, user.id_user, user.nama_user
-            FROM childs
-            JOIN user ON childs.id_user=user.id_user
-            WHERE user.id_user=$id";
-    $hasil = mysqli_query($dtb, $query);
-    $data = mysqli_fetch_assoc($hasil);
-    
+    $url = $data['vid_course'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,14 +42,14 @@
         <div class="menu_bar">
             <div class="menu">
                 <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="../display/dashboard-child.php?id_child=<?php echo $data['id_child']?>">
+                    <li class="nav-link active">
+                        <a href="../display/dashboard-child.php?id_child=<?php echo $idc?>">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-link active">
-                        <a href="family-ch.php">
+                    <li class="nav-link">
+                        <a href="../data-family/family-ch.php">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">My Profile</span>
                         </a>
@@ -84,65 +79,18 @@
         </div>
     </nav>
     <section class="home">
-        <h1><span>Data User</span></h1> 
+        <h1><span>Course</span></h1> 
             <fieldset class="boks">
-                <h2 class="tape"><span>Profile</span></h2>
-                <table class="table-us">
-                <input type="hidden" name="id" value="<?php echo $data['id_child']?>">
-                    <tr>
-                        <td>Nama</td>
-                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['child_name']?></td>
-                    </tr>
-                    <tr>
-                        <td>Username</td>
-                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['child_uname']?></td>
-                    </tr>
-                    <tr>
-                        <td>Tanggal Lahir</td>
-                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['child_lahir']?></td>
-                    </tr><br>
-                    <?php if(!empty($data['school'])): ?>
-                    <tr>
-                        <td>Asal Sekolah</td>
-                        <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['school']?></td>
-                    </tr>
-                    <?php else:?>
-                    <?php endif?>
+                <h2 class="tape"><span><?php echo $data['course_title']?></span></h2>
+                <iframe  width="600" height="345" src="<?php echo $url;?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </table>
+                <table class="table-ch">
                     <tfoot>
-                        <td><a href="family-edit2.php?id_child=<?php echo $data['id_child']?>"><button class="btn-secondary">Edit</button></a></td>
+                        <td><a href="../data-finished/finished-list.php"><button class="btn-secondary" name="submit">Finish</button></a></td>
                     </tfoot>
                 </table>
 
-            </fieldset><br/><br/><br/>
-
-           <form action="" method="POST">
-            <fieldset class="boks">
-                <h2 class="tape"><span>Ubah Password</span></h2>
-                <table class="table-us">
-                    <input type="hidden" name="id" value="<?php echo $data['id_child']?>">
-                    <tr>
-                    <td>
-                        <div class="form">
-                            <input type="password" name="lama" id="pwd" required/>
-                            <label for="">Password Lama</label>
-                            <div class="input-group-append">
-                                <i class="fa fa-eye-slash" id="icon"></i>
-                            </div>
-                        </div> 
-                        <div class="form">
-                            <input type="password" name="baru" id="konfig" required/>
-                            <label for="">Password Baru</label>
-                            <div class="input-group-append">
-                                <i class="fa fa-eye-slash" id="eye" ></i>
-                            </div>
-                        </div>   
-                    </td></tr>
-                    <tfoot>
-                        <td><a href="#"><button class="btn-secondary" name="submit">Edit</button></a></td>
-                    </tfoot>
-                </table>
             </fieldset>
-            </form> 
     </section>
     <?php 
         if(isset($_POST['submit']))

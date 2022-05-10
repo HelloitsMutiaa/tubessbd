@@ -6,6 +6,16 @@
         exit();
     }
 ?>
+<?php
+    include "../includes/connect.php";
+        $id_child = $_GET['id_child'];
+        $query = "SELECT childs.*, user.id_user, user.nama_user
+         FROM childs
+         JOIN user ON childs.id_user=user.id_user
+         WHERE childs.id_child = $id_child";
+        $hasil = mysqli_query($dtb, $query);
+        $data = mysqli_fetch_assoc($hasil);
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +47,7 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="../display/dashboard-child.php">
+                        <a href="../display/dashboard-child.php?id_child=<?php echo $data['id_child']?>">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -72,19 +82,9 @@
             </div>      
         </div>
     </nav>
-    <?php
-    include "../includes/connect.php";
-        $id_child = $_GET['id_child'];
-        $query = "SELECT childs.*, user.id_user, user.nama_user
-         FROM childs
-         JOIN user ON childs.id_user=user.id_user
-         WHERE childs.id_child = $id_child";
-        $hasil = mysqli_query($dtb, $query);
-        $data = mysqli_fetch_assoc($hasil);
-    ?>
     <section class="home">
         <form action="" method="POST">
-        <h1><span>Edit Keluarga</span></h1>
+        <h1><span>Edit Data</span></h1>
         <fieldset class="box">
         <input type="hidden" value="<?php echo $data['id_child']?>" name="id">
          <div class="form">

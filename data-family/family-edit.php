@@ -36,15 +36,15 @@
         <div class="menu_bar">
             <div class="menu">
                 <ul class="menu-links">
+                    <?php 
+                    session_start();
+                    if(($_SESSION['nama_level']) !== 'admin'): ?>
                     <li class="nav-link">
-                        <a href="../display/dashboard.php">
+                        <a href="../display/dashboard-user.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <?php 
-                    session_start();
-                    if(($_SESSION['nama_level']) !== 'admin'): ?>
                     <li class="nav-link">
                         <a href="../data-user/user.php">
                             <i class='bx bx-user icon'></i>
@@ -74,6 +74,12 @@
                 </li>
             </div>
                 <?php else :?>
+                    <li class="nav-link">
+                        <a href="../display/dashboard.php">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
                     <li class="nav-link">
                         <a href="../data-user/user.php">
                             <i class='bx bx-user icon'></i>

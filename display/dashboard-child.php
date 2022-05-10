@@ -6,7 +6,8 @@
         header('Location: ../Registrasi/login.php');
         exit();
     }
-    include "../data-kursus/kursus-list.php";
+
+    $id_child = $_GET['id_child'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,15 +94,33 @@
     </div>
 
     <div class="images">
+        <form action="" method="POST">
         <?php foreach($data_kursus as $data): ?>
         <div class="image-box">
+            <input type="hidden" name="id_course" value="<?php echo $data['id_course']?>">
+            <input type="hidden" name="id_child" value="<?php echo $id_child?>">
+            <a href="../data-kursus/kursus-ch.php?id=<?php echo $data['id_course']?>&id_child=<?php echo $id_child?>">
             <img src="../data-kursus/cover/<?php echo $data['course_cover']?>" alt="">
             <h6><?php echo $data['course_title']?></h6>
+            </a>
         </div>
         <?php endforeach?>
+        </form>
         </div>
     </div>
     </section>
+
+    <?php 
+    include "../includes/connect.php";
+    if(isset($_POST['submit'])){
+        $anak = $_POST['id_child'];
+        $course = $_POST['id_course'];
+        $tgl_mulai = date('Y-m-d', strtotime(date('Y-m-d')));
+        $query = mysqli_query($dtb, "INSERT INTO ongoing (id_child, id_course, tgl_mulai)
+                VALUES ($anak, $course, '$tgl_mulai')");
+    }
+    
+    ?>
 
 <script>
     let btn = document.querySelector(".toggle");

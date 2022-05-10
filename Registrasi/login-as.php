@@ -41,7 +41,7 @@
         <tr>
             <td><a href="../display/dashboard-user.php"><button class="btn-secondary"><?php echo $_SESSION['nama_level'];?></button></td>
             <?php foreach($data as $d): ?>
-            <td><a href="../display/dashboard-child.php"><button class="btn-secondary" name="submit"><?php echo $d['child_name'];?></button></td>
+            <td><a href="../display/dashboard-child.php?id_child=<?php echo $d['id_child']?>"><button class="btn-secondary" name="submit"><?php echo $d['child_name'];?></button></td>
             <?php endforeach?>
         </tr>
     </table>
