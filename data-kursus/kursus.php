@@ -111,12 +111,12 @@ include "kursus-list.php";
                     <td><?php echo $kursus['vid_course'] ?></td>
                     <td><img src="cover/<?php echo $kursus['course_cover']?>"></td>
                     <td><?php echo $kursus['kategori_nama'] ?></td>
-                    <?php endforeach?>
                     <td>
                         <a href="kursus-edit.php?id_course=<?php echo $kursus['id_course']; ?>"><button class="btn-primary">Edit</button></a>
                         <a href="kursus-delete.php?id_course=<?php echo $kursus['id_course']; ?>"><button class="btn-primary" onclick="return confirm('Are You Sure ?');">Hapus</button></a>
                     </td>
                     </tr>
+                    <?php endforeach?>
                     </tbody>
             </table>
 

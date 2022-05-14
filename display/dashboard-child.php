@@ -1,5 +1,6 @@
 <?php 
     error_reporting(0);
+    include "../includes/connect.php";
     include "../data-kursus/kursus-list.php";
     session_start();
     if(empty($_SESSION['username'])){
@@ -92,32 +93,34 @@
             </table>
         </div>
     </div>
-
+    
     <div class="images">
+    <?php foreach($data_kursus as $data): ?>
         <form action="" method="POST">
-        <?php foreach($data_kursus as $data): ?>
         <div class="image-box">
             <input type="hidden" name="id_course" value="<?php echo $data['id_course']?>">
-            <input type="hidden" name="id_child" value="<?php echo $id_child?>">
-            <a href="../data-kursus/kursus-ch.php?id=<?php echo $data['id_course']?>&id_child=<?php echo $id_child?>">
             <img src="../data-kursus/cover/<?php echo $data['course_cover']?>" alt="">
             <h6><?php echo $data['course_title']?></h6>
-            </a>
         </div>
-        <?php endforeach?>
+        <div class="bt-ch">
+        <button name="submit"></button></div>
         </form>
+    <?php endforeach?>
         </div>
     </div>
     </section>
 
     <?php 
-    include "../includes/connect.php";
     if(isset($_POST['submit'])){
-        $anak = $_POST['id_child'];
+        $anak = $id_child;
         $course = $_POST['id_course'];
         $tgl_mulai = date('Y-m-d', strtotime(date('Y-m-d')));
-        $query = mysqli_query($dtb, "INSERT INTO ongoing (id_child, id_course, tgl_mulai)
-                VALUES ($anak, $course, '$tgl_mulai')");
+        $query = mysqli_query($dtb, "INSERT INTO ongoing(id_child, id_course, tgl_mulai)
+                VALUES($anak, $course, '$tgl_mulai')");
+
+        if($query>0){
+            echo "<script>window.location='../data-kursus/kursus-ch.php?id=".$course."&&id_child=".$anak."'</script>";
+        }
     }
     
     ?>

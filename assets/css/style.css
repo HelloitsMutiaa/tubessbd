@@ -632,3 +632,17 @@ header .image-text .header-text{
     color: var(--text-color);
 }
 
+.bt-ch{
+    border: black;
+    height: 300px;
+    width: 210px;
+    transform: translateY(-100%);
+    margin-bottom: 0px;
+}
+
+.bt-ch button{
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: none;
+}
