@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="../data-kursus/kursus-ku.php?id_child=<?php echo $data['id_child']?>">
                             <i class='bx bx-heart icon'></i>
                             <span class="text nav-text"> My Course</span>
                         </a>
@@ -108,67 +108,11 @@
                     </tr>
                     <?php else:?>
                     <?php endif?>
-                    <tfoot>
-                        <td><a href="family-edit2.php?id_child=<?php echo $data['id_child']?>"><button class="btn-secondary">Edit</button></a></td>
-                    </tfoot>
+                    
                 </table>
 
-            </fieldset><br/><br/><br/>
-
-           <form action="" method="POST">
-            <fieldset class="boks">
-                <h2 class="tape"><span>Ubah Password</span></h2>
-                <table class="table-us">
-                    <input type="hidden" name="id" value="<?php echo $data['id_child']?>">
-                    <tr>
-                    <td>
-                        <div class="form">
-                            <input type="password" name="lama" id="pwd" required/>
-                            <label for="">Password Lama</label>
-                            <div class="input-group-append">
-                                <i class="fa fa-eye-slash" id="icon"></i>
-                            </div>
-                        </div> 
-                        <div class="form">
-                            <input type="password" name="baru" id="konfig" required/>
-                            <label for="">Password Baru</label>
-                            <div class="input-group-append">
-                                <i class="fa fa-eye-slash" id="eye" ></i>
-                            </div>
-                        </div>   
-                    </td></tr>
-                    <tfoot>
-                        <td><a href="#"><button class="btn-secondary" name="submit">Edit</button></a></td>
-                    </tfoot>
-                </table>
             </fieldset>
-            </form> 
     </section>
-    <?php 
-        if(isset($_POST['submit']))
-        {
-            $id = $_POST['id'];
-            $lama = md5($_POST['lama']);
-
-            if($lama !== $data['child_pass']){
-                echo "<script>window.alert('Password Lama Salah!')
-                window.location='family-ch.php'</script>";
-                return false;
-            } else {
-                $baru = md5($_POST['baru']);
-                $query = "UPDATE childs
-                        SET child_pass='$baru'
-                        WHERE id_child=$id";
-                $result = mysqli_query($dtb, $query);
-                if($result == true){
-                    echo "<script>window.alert('Password Berhasil di Update')
-                    window.location='family-ch.php'</script>";
-                } else {
-                    echo "Koneksi gagal" .mysqli_errno($dtb);
-                }
-            }
-        }
-    ?>
 
 <script>
     let btn = document.querySelector(".toggle");

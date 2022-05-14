@@ -41,7 +41,7 @@
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link active">
-                        <a href="dashboard-child.php">
+                        <a href="dashboard-child.php?id_child=<?php echo $id_child?>">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="../data-kursus/kursus-ku.php?id_child=<?php echo $id_child?>">
                             <i class='bx bx-heart icon'></i>
                             <span class="text nav-text">My Course</span>
                         </a>
@@ -99,12 +99,15 @@
         <form action="" method="POST">
         <div class="image-box">
             <input type="hidden" name="id_course" value="<?php echo $data['id_course']?>">
+            <a href="../data-kursus/kursus-ch.php?id=<?php echo $data['id_course']?>&&id_child=<?php echo $id_child?>">
             <img src="../data-kursus/cover/<?php echo $data['course_cover']?>" alt="">
             <h6><?php echo $data['course_title']?></h6>
+            </a>
         </div>
         <div class="bt-ch">
-        <button name="submit"></button></div>
-        </form>
+        <button name="submit"></button>
+        </div>
+    </form>
     <?php endforeach?>
         </div>
     </div>
@@ -123,6 +126,17 @@
         }
     }
     
+    ?>
+    <?php 
+    $idk = $_POST['id_course'];
+    $query = "SELECT ongoing.*, ongoing.id_ongoing, childs.id_child, childs.child_name, course.id_course, course.course_title,
+                                 (SELECT tgl_selesai FROM selesai WHERE selesai.id_ongoing=ongoing.id_ongoing)as tgl_selesai
+                                 FROM ongoing
+                                 JOIN childs ON ongoing.id_child=childs.id_child
+                                 JOIN course ON ongoing.id_course=course.id_course
+                                 WHERE (ongoing.id_child=$id_child) AND (ongoing.id_course=$idk) ";
+    $hasil = mysqli_query($dtb, $query);
+    $ongoing = mysqli_num_rows($hasil);
     ?>
 
 <script>

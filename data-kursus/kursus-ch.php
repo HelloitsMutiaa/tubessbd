@@ -10,6 +10,17 @@
     $data = mysqli_fetch_assoc($query);
 
     $url = $data['vid_course'];
+
+    /* Data Ongoing */
+    $ongoing = "SELECT ongoing.*, ongoing.id_ongoing, childs.id_child, course.id_course,
+            (SELECT tgl_selesai FROM selesai WHERE selesai.id_ongoing=ongoing.id_ongoing)as tgl_selesai
+            FROM ongoing
+            JOIN childs ON ongoing.id_child=childs.id_child
+            JOIN course ON ongoing.id_course=course.id_course
+            WHERE (ongoing.id_child=$idc) AND (ongoing.id_course=$id)";
+
+    $result = mysqli_query($dtb, $ongoing);
+    $data_ongoing = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +66,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="./kursus-ku.php?id_child=<?php echo $idc?>">
                             <i class='bx bx-heart icon'></i>
                             <span class="text nav-text"> My Course</span>
                         </a>
@@ -84,39 +95,45 @@
                 <h2 class="tape"><span><?php echo $data['course_title']?></span></h2>
                 <iframe  width="600" height="345" src="<?php echo $url;?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </table>
+                <?php if($data_ongoing['status']!=='Selesai'):?>
+                <form action="" method="POST">
+                    <input type="hidden" name="id_ongoing" value="<?php echo $data_ongoing['id_ongoing'] ?>">
                 <table class="table-ch">
                     <tfoot>
-                        <td><a href="../data-finished/finished-list.php"><button class="btn-secondary" name="submit">Finish</button></a></td>
+                        <td><a href="../data-finished/finished-list.php?id"><button class="btn-secondary" name="submit">Finish</button></a></td>
                     </tfoot>
                 </table>
+                <?php else:?>
+                    <?php endif?>
+                </form>
 
             </fieldset>
     </section>
-    <?php 
-        if(isset($_POST['submit']))
-        {
-            $id = $_POST['id'];
-            $lama = md5($_POST['lama']);
 
-            if($lama !== $data['child_pass']){
-                echo "<script>window.alert('Password Lama Salah!')
-                window.location='family-ch.php'</script>";
-                return false;
-            } else {
-                $baru = md5($_POST['baru']);
-                $query = "UPDATE childs
-                        SET child_pass='$baru'
-                        WHERE id_child=$id";
-                $result = mysqli_query($dtb, $query);
-                if($result == true){
-                    echo "<script>window.alert('Password Berhasil di Update')
-                    window.location='family-ch.php'</script>";
+    <?php 
+
+            if(isset($_POST["submit"]))
+            {
+                $id = $_POST['id_ongoing'];
+                $selesai = date('Y-m-d');
+                $poin = 40;
+                
+                $status = "Selesai";
+                $query2 = "UPDATE ongoing SET status='$status' WHERE id_ongoing=$id;";
+                $query2 .= "INSERT INTO selesai(id_ongoing, tgl_selesai, poin)
+                VALUES ($id, '$selesai', $poin)";
+
+                $hasil2 = mysqli_multi_query($dtb, $query2);
+                if($hasil2 == true)
+                {
+                    echo "<script>window.alert('Congrats You Get 40 Poins')
+                            window.location='../display/dashboard-child.php?id_child=".$idc."'</script>";
                 } else {
-                    echo "Koneksi gagal" .mysqli_errno($dtb);
+                    echo "koneksi.gagal" .mysqli_error($dtb);
+                    header('location:finished-list.php');
                 }
             }
-        }
-    ?>
+         ?>
 
 <script>
     let btn = document.querySelector(".toggle");
