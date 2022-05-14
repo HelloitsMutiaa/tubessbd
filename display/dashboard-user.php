@@ -94,8 +94,9 @@
     <div class="images">
         <?php foreach($data_kursus as $data): ?>
         <div class="image-box">
+            <a href="../data-kursus/video-kursus.php?id=<?php echo $data['id_course']?>">
             <img src="../data-kursus/cover/<?php echo $data['course_cover']?>" alt="">
-            <h6><?php echo $data['course_title']?></h6>
+            <h6><?php echo $data['course_title']?></h6></a>
         </div>
         <?php endforeach?>
         </div>

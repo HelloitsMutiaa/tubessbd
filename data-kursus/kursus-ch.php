@@ -10,17 +10,6 @@
     $data = mysqli_fetch_assoc($query);
 
     $url = $data['vid_course'];
-
-    /* Data Ongoing */
-    $ongoing = "SELECT ongoing.*, ongoing.id_ongoing, childs.id_child, course.id_course,
-            (SELECT tgl_selesai FROM selesai WHERE selesai.id_ongoing=ongoing.id_ongoing)as tgl_selesai
-            FROM ongoing
-            JOIN childs ON ongoing.id_child=childs.id_child
-            JOIN course ON ongoing.id_course=course.id_course
-            WHERE (ongoing.id_child=$idc) AND (ongoing.id_course=$id)";
-
-    $result = mysqli_query($dtb, $ongoing);
-    $data_ongoing = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>

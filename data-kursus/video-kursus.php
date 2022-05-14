@@ -1,26 +1,34 @@
-<?php 
-    error_reporting(0);
+<?php
+    error_reporting();
     include "../includes/connect.php";
     session_start();
-    if (($_SESSION['nama_level']) !== 'admin') {
-        header('Location: ../Registrasi/login-as.php');
+    if(empty($_SESSION['username'])){
+        header('Location: ../Registrasi/login.php');
         exit();
     }
-    include "../data-kursus/kursus-list.php";
+    $id = $_GET['id'];
+    $query = mysqli_query($dtb, "SELECT course.*, kategori.kategori_nama
+            FROM course
+            LEFT JOIN kategori ON kategori.id_kategori = course.id_kategori
+            WHERE course.id_course=$id");
+    $data = mysqli_fetch_assoc($query);
+
+    $url = $data['vid_course'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="../assets/css/style.css?<?php echo time();?>" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../assets/css/style.css?<?php echo time();?>">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://kit.fontawesome.com/6b104fdfc3.js" crossorigin="anonymous"></script>
     <title>BookR</title>
 </head>
 <body>
-    <nav class="sidebar">
+<nav class="sidebar">
         <header>
             <div class="image-text">
                 <span class="image">
@@ -38,8 +46,45 @@
         <div class="menu_bar">
             <div class="menu">
                 <ul class="menu-links">
+                    <?php 
+                    if(($_SESSION['nama_level']) !== 'admin'): ?>
                     <li class="nav-link active">
-                        <a href="dashboard.php">
+                        <a href="../display/dashboard-user.php">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="../data-user/user.php">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">My Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="../data-family/family.php">
+                            <i class='bx bx-heart icon'></i>
+                            <span class="text nav-text">My Family</span>
+                        </a>
+                    </li>
+                        <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-error-circle icon'></i>
+                            <span class="text nav-text">About-us</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bot-content">
+                <li class="nav-link">
+                    <a href="../Registrasi/logout.php">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Log Out</span>
+                    </a>
+                </li>
+            </div>
+                <?php else :?>
+                    <li class="nav-link active">
+                        <a href="../display/dashboard.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -85,37 +130,15 @@
                 </li>
             </div>
         </div>
+        <?php endif?>
     </nav>
     <section class="home">
-        <div class="pict"><img src="../assets/img/pict 1.png" alt=""/></div>
-        <div class="container">
-            <table class="elementscontainer">
-                <tr>
-                    <td>
-                        <input type="text" placeholder="Search" class="search">
-                    </td>
-                    <td>
-                        <a href="#">
-                            <i class="bx bx-search"></i>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <div class="images">
-        <?php foreach($data_kursus as $data): ?>
-        <div class="image-box">
-            <a href="../data-kursus/video-kursus.php?id=<?php echo $data['id_course']?>">
-            <img src="../data-kursus/cover/<?php echo $data['course_cover']?>" alt="">
-            <h6><?php echo $data['course_title']?></h6></a>
-        </div>
-        <?php endforeach?>
-        </div>
-    </div>
+        <h1><span>Course</span></h1> 
+            <fieldset class="boks">
+                <h2 class="tape"><span><?php echo $data['course_title']?></span></h2>
+                <iframe  width="600" height="345" src="<?php echo $url;?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </fieldset>
     </section>
-
 <script>
     let btn = document.querySelector(".toggle");
     let sidebar = document.querySelector(".sidebar");
@@ -124,6 +147,7 @@
         sidebar.classList.toggle("close");
     }
 </script>
+<script src="../assets/js/show.js"></script>
 
 </body>
 </html>
