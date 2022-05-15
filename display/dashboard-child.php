@@ -1,7 +1,6 @@
 <?php 
     error_reporting(0);
     include "../includes/connect.php";
-    include "../data-kursus/kursus-list.php";
     session_start();
     if(empty($_SESSION['username'])){
         header('Location: ../Registrasi/login.php');
@@ -9,6 +8,17 @@
     }
 
     $id_child = $_GET['id_child'];
+
+    $kursus = "SELECT ongoing.*, ongoing.id_ongoing, childs.id_child, course.id_course, course.course_cover, course.course_title
+            FROM ongoing
+            JOIN childs ON ongoing.id_child=childs.id_child
+            JOIN course ON ongoing.id_course=course.id_course
+            WHERE ongoing.id_child=$id_child";
+            $result = mysqli_query($dtb, $kursus);
+            $ongo = array();
+            while($baris = mysqli_fetch_assoc($result)){
+                $ongo[] = $baris;
+            }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +57,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-family/family-ch.php">
+                        <a href="../data-family/family-ch.php?id_child=<?php echo $id_child?>">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">My Profile</span>
                         </a>
@@ -95,21 +105,36 @@
     </div>
     
     <div class="images">
-    <?php foreach($data_kursus as $data): ?>
+    <?php foreach($ongo as $on): ?>
+        <div class="image-box">
+            <input type="hidden" name="id" value="<?php echo $on['id_course']?>">
+            <a href="../data-kursus/kursus-ch.php?id=<?php echo $on['id_course']?>&&id_child=<?php echo $id_child?>">
+            <img src="../data-kursus/cover/<?php echo $on['course_cover']?>" alt="">
+            <h6><?php echo $on['course_title']?></h6>
+            </a>
+        </div>
+        <?php endforeach?>
+        <?php
+            $kurs = mysqli_query($dtb, "SELECT * FROM course WHERE id_course NOT IN (SELECT id_course FROM ongoing WHERE id_child = $id_child)");
+            $data_kursus = array();
+            while($row = mysqli_fetch_array($kurs))
+            {
+            $data_kursus[] = $row;
+            }
+        ?>
+        <?php foreach($data_kursus as $data): ?>
         <form action="" method="POST">
         <div class="image-box">
             <input type="hidden" name="id_course" value="<?php echo $data['id_course']?>">
-            <a href="../data-kursus/kursus-ch.php?id=<?php echo $data['id_course']?>&&id_child=<?php echo $id_child?>">
             <img src="../data-kursus/cover/<?php echo $data['course_cover']?>" alt="">
             <h6><?php echo $data['course_title']?></h6>
-            </a>
         </div>
         <div class="bt-ch">
         <button name="submit"></button>
         </div>
     </form>
     <?php endforeach?>
-        </div>
+    </div>
     </div>
     </section>
 
@@ -126,17 +151,6 @@
         }
     }
     
-    ?>
-    <?php 
-    $idk = $_POST['id_course'];
-    $query = "SELECT ongoing.*, ongoing.id_ongoing, childs.id_child, childs.child_name, course.id_course, course.course_title,
-                                 (SELECT tgl_selesai FROM selesai WHERE selesai.id_ongoing=ongoing.id_ongoing)as tgl_selesai
-                                 FROM ongoing
-                                 JOIN childs ON ongoing.id_child=childs.id_child
-                                 JOIN course ON ongoing.id_course=course.id_course
-                                 WHERE (ongoing.id_child=$id_child) AND (ongoing.id_course=$idk) ";
-    $hasil = mysqli_query($dtb, $query);
-    $ongoing = mysqli_num_rows($hasil);
     ?>
 
 <script>

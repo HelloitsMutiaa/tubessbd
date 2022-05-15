@@ -42,7 +42,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-family/family-ch.php">
+                        <a href="../data-family/family-ch.php?id_child=<?php echo $idc?>">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">My Profile</span>
                         </a>
@@ -85,12 +85,8 @@
                     <tr>
                     <?php 
                          $status = " ";
-                         $query = "SELECT ongoing.*, ongoing.id_ongoing, childs.id_child, childs.child_name, course.id_course, course.course_title,
-                                 (SELECT tgl_selesai FROM selesai WHERE selesai.id_ongoing=ongoing.id_ongoing)as tgl_selesai
-                                 FROM ongoing
-                                 JOIN childs ON ongoing.id_child=childs.id_child
-                                 JOIN course ON ongoing.id_course=course.id_course
-                                 WHERE (ongoing.id_child=$idc) AND (ongoing.status='$status')";
+                         $query = "SELECT * FROM ongoing
+                                 WHERE (id_child=$idc) AND (status='$status')";
                          $hasil = mysqli_query($dtb, $query);
                          $ongoing = mysqli_num_rows($hasil);
 

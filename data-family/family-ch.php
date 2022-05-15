@@ -8,11 +8,11 @@
         exit();
     }
 
-    $id = $_SESSION['id_user'];
+    $id = $_GET['id_child'];
     $query = "SELECT childs.*, user.id_user, user.nama_user
             FROM childs
             JOIN user ON childs.id_user=user.id_user
-            WHERE user.id_user=$id";
+            WHERE childs.id_child=$id";
     $hasil = mysqli_query($dtb, $query);
     $data = mysqli_fetch_assoc($hasil);
     
@@ -54,7 +54,7 @@
                         </a>
                     </li>
                     <li class="nav-link active">
-                        <a href="family-ch.php">
+                        <a href="family-ch.php?id_child=<?php echo $data['id_child']?>">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">My Profile</span>
                         </a>
@@ -88,7 +88,7 @@
             <fieldset class="boks">
                 <h2 class="tape"><span>Profile</span></h2>
                 <table class="table-us">
-                <input type="hidden" name="id" value="<?php echo $data['id_child']?>">
+                <input type="hidden" name="id" value="<?php echo $id?>">
                     <tr>
                         <td>Nama</td>
                         <td>:&nbsp;&nbsp;&nbsp;<?php echo $data['child_name']?></td>

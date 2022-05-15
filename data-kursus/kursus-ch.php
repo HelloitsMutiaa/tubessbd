@@ -3,13 +3,18 @@
     include "../includes/connect.php";
     $id = $_GET['id'];
     $idc = $_GET['id_child'];
-    $query = mysqli_query($dtb, "SELECT course.*, kategori.kategori_nama
-            FROM course
-            LEFT JOIN kategori ON kategori.id_kategori = course.id_kategori
-            WHERE course.id_course=$id");
+    $query = mysqli_query($dtb, "SELECT * FROM course
+            WHERE id_course=$id");
     $data = mysqli_fetch_assoc($query);
 
     $url = $data['vid_course'];
+
+    /* Data Ongoing */
+    $ongoing = "SELECT * FROM ongoing
+            WHERE (id_child=$idc) AND (id_course=$id)";
+
+    $result = mysqli_query($dtb, $ongoing);
+    $data_ongoing = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +54,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="../data-family/family-ch.php">
+                        <a href="../data-family/family-ch.php?id_child=<?php echo $idc?>">
                             <i class='bx bx-user icon'></i>
                             <span class="text nav-text">My Profile</span>
                         </a>
