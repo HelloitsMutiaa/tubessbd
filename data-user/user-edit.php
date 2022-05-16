@@ -65,7 +65,7 @@
                         </a>
                     </li>
                         <li class="nav-link">
-                        <a href="#">
+                        <a href="../display/about-us.php">
                             <i class='bx bx-error-circle icon'></i>
                             <span class="text nav-text">About-us</span>
                         </a>

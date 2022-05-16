@@ -54,7 +54,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="../display/about-ch.php?id_child=<?php echo $idc?>">
                             <i class='bx bx-error-circle icon'></i>
                             <span class="text nav-text">About-us</span>
                         </a>

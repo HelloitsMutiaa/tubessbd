@@ -5,7 +5,6 @@
         header('Location: ../Registrasi/login.php');
         exit();
     }
-    include "../data-kursus/kursus-list.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +17,7 @@
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
     <title>BookR</title>
 </head>
-<body>
+<body  style="background-color: #DDD;">
     <nav class="sidebar">
         <header>
             <div class="image-text">
@@ -37,7 +36,7 @@
         <div class="menu_bar">
             <div class="menu">
                 <ul class="menu-links">
-                    <li class="nav-link active">
+                    <li class="nav-link">
                         <a href="dashboard-user.php">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
@@ -55,7 +54,7 @@
                             <span class="text nav-text">My Family</span>
                         </a>
                     </li>
-                    <li class="nav-link">
+                        <li class="nav-link active">
                         <a href="about-us.php">
                             <i class='bx bx-error-circle icon'></i>
                             <span class="text nav-text">About-us</span>
@@ -74,33 +73,21 @@
         </div>
     </nav>
     <section class="home">
-        <div class="pict"><img src="../assets/img/pict 1.png" alt=""/></div>
-        <div class="container">
-            <table class="elementscontainer">
-                <tr>
-                    <td>
-                        <input type="text" placeholder="Search" class="search">
-                    </td>
-                    <td>
-                        <a href="#">
-                            <i class="bx bx-search"></i>
-                        </a>
-                    </td>
-                </tr>
-            </table>
+        <form action="" method="POST">
+        <h1><span>About Us</span></h1>
+        <div class="about-image">
+        <img src="../assets/img/logo.png" alt="">
+        <div class="title">
+        <h2>Welcome To BookP !!</h2>
+        </div></div>
+        <div class="about-text">
+        <p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+            Bookp is an application used for monitoring functions. This application is useful for parents or teachers who want to monitor their children or students. In bookp there are various kinds of courses that are composed of several categories in it. registered children or students can access the course for learning purposes. While bookp is made to help learning for its users. Bookp created by group of eight in 2022</p>
         </div>
-    </div>
-
-    <div class="images">
-        <?php foreach($data_kursus as $data): ?>
-        <div class="image-box">
-            <a href="../data-kursus/video-kursus.php?id=<?php echo $data['id_course']?>">
-            <img src="../data-kursus/cover/<?php echo $data['course_cover']?>" alt="">
-            <h6><?php echo $data['course_title']?></h6></a>
+        <div class="copyright">
+            <h4>&copy;bookP-<script>document.write(new Date().getFullYear())</script></h4>
         </div>
-        <?php endforeach?>
-        </div>
-    </div>
+        </form>
     </section>
 
 <script>

@@ -1,24 +1,12 @@
 <?php 
     error_reporting(0);
-    include "../includes/connect.php";
     session_start();
     if(empty($_SESSION['username'])){
         header('Location: ../Registrasi/login.php');
         exit();
     }
-
     $id_child = $_GET['id_child'];
-
-    $kursus = "SELECT ongoing.*, ongoing.id_ongoing, childs.id_child, course.id_course, course.course_cover, course.course_title
-            FROM ongoing
-            JOIN childs ON ongoing.id_child=childs.id_child
-            JOIN course ON ongoing.id_course=course.id_course
-            WHERE ongoing.id_child=$id_child";
-            $result = mysqli_query($dtb, $kursus);
-            $ongo = array();
-            while($baris = mysqli_fetch_assoc($result)){
-                $ongo[] = $baris;
-            }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +19,7 @@
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
     <title>BookR</title>
 </head>
-<body>
+<body  style="background-color: #DDD;">
     <nav class="sidebar">
         <header>
             <div class="image-text">
@@ -50,7 +38,7 @@
         <div class="menu_bar">
             <div class="menu">
                 <ul class="menu-links">
-                    <li class="nav-link active">
+                <li class="nav-link">
                         <a href="dashboard-child.php?id_child=<?php echo $id_child?>">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Dashboard</span>
@@ -68,8 +56,8 @@
                             <span class="text nav-text">My Course</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a href="about-ch.php?id_child=<?php echo $id_child?>">
+                        <li class="nav-link active">
+                        <a href="about-us.php?id_child=<?php echo $id_child?>">
                             <i class='bx bx-error-circle icon'></i>
                             <span class="text nav-text">About-us</span>
                         </a>
@@ -87,71 +75,22 @@
         </div>
     </nav>
     <section class="home">
-        <div class="pict"><img src="../assets/img/pict 1.png" alt=""/></div>
-        <div class="container">
-            <table class="elementscontainer">
-                <tr>
-                    <td>
-                        <input type="text" placeholder="Search" class="search">
-                    </td>
-                    <td>
-                        <a href="#">
-                            <i class="bx bx-search"></i>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    
-    <div class="images">
-    <?php foreach($ongo as $on): ?>
-        <div class="image-box">
-            <input type="hidden" name="id" value="<?php echo $on['id_course']?>">
-            <a href="../data-kursus/kursus-ch.php?id=<?php echo $on['id_course']?>&&id_child=<?php echo $id_child?>">
-            <img src="../data-kursus/cover/<?php echo $on['course_cover']?>" alt="">
-            <h6><?php echo $on['course_title']?></h6>
-            </a>
-        </div>
-        <?php endforeach?>
-        <?php
-            $kurs = mysqli_query($dtb, "SELECT * FROM course WHERE id_course NOT IN (SELECT id_course FROM ongoing WHERE id_child = $id_child)");
-            $data_kursus = array();
-            while($row = mysqli_fetch_array($kurs))
-            {
-            $data_kursus[] = $row;
-            }
-        ?>
-        <?php foreach($data_kursus as $data): ?>
         <form action="" method="POST">
-        <div class="image-box">
-            <input type="hidden" name="id_course" value="<?php echo $data['id_course']?>">
-            <img src="../data-kursus/cover/<?php echo $data['course_cover']?>" alt="">
-            <h6><?php echo $data['course_title']?></h6>
+        <h1><span>About Us</span></h1>
+        <div class="about-image">
+        <img src="../assets/img/logo.png" alt="">
+        <div class="title">
+        <h2>Welcome To BookP !!</h2>
+        </div></div>
+        <div class="about-text">
+        <p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+            Bookp is an application used for monitoring functions. This application is useful for parents or teachers who want to monitor their children or students. In bookp there are various kinds of courses that are composed of several categories in it. registered children or students can access the course for learning purposes. While bookp is made to help learning for its users. Bookp created by group of eight in 2022</p>
         </div>
-        <div class="bt-ch">
-        <button name="submit"></button>
+        <div class="copyright">
+            <h4>&copy;bookP-<script>document.write(new Date().getFullYear())</script></h4>
         </div>
-    </form>
-    <?php endforeach?>
-    </div>
-    </div>
+        </form>
     </section>
-
-    <?php 
-    if(isset($_POST['submit'])){
-        $anak = $id_child;
-        $course = $_POST['id_course'];
-        $tgl_mulai = date('Y-m-d', strtotime(date('Y-m-d')));
-        $query = mysqli_query($dtb, "INSERT INTO ongoing(id_child, id_course, tgl_mulai)
-                VALUES($anak, $course, '$tgl_mulai')");
-
-        if($query>0){
-            echo "<script>window.location='../data-kursus/kursus-ch.php?id=".$course."&&id_child=".$anak."'</script>";
-        }
-    }
-    
-    ?>
 
 <script>
     let btn = document.querySelector(".toggle");

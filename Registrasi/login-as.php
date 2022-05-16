@@ -47,7 +47,7 @@
     </table>
     </div>
     
-    <h3 class="tc"><span>Tambah Keluarga</span></h3>
+    <h3 class="tc"><span>Add Family</span></h3>
     <table class="table-ch">
         <tfoot>
             <td><a href="../data-family/family-add.php"><button class="btn-secondary">+</button></a></td>
