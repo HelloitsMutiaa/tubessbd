@@ -133,7 +133,7 @@
             $cek = mysqli_num_rows(mysqli_query($dtb, "SELECT * FROM course WHERE course_title = '$judul'"));
             if($cek>0){
                 echo "<script>window.alert('Course Sudah Terdaftar')
-                      window.location='kursus.tambah'</script>";
+                      window.location='kursus.php'</script>";
             } else {
                 $query = "INSERT INTO course (code_course, course_title, vid_course, course_cover, id_kategori)
                           VALUES('$kode', '$judul', '$link', '$nama_file', $kategori)";
