@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Apr 2022 pada 19.28
+-- Waktu pembuatan: 18 Bulan Mei 2022 pada 20.08
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 8.0.11
 
@@ -58,7 +58,14 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`id_course`, `code_course`, `course_title`, `vid_course`, `course_cover`, `id_kategori`) VALUES
-(19, '25b', 'Narnia', 'https://youtube.com', '38ff8a9704e8b224bbf03ac5fd40f61f.jpg', 1);
+(22, '12a', 'The Carter Family', 'https://www.youtube.com/embed/OdNv-J31Kk8', 'family3.jpg', 3),
+(23, '12b', 'Family Members', 'https://www.youtube.com/embed/FHaObkHEkHQ', 'family5.jpg', 3),
+(24, '14a', 'School Utilities', 'https://www.youtube.com/embed/41cJ0mqWses', 'school1.jpg', 4),
+(25, '15c', 'Number Song', 'https://www.youtube.com/embed/D0Ajq682yrA', 'school2.jpg', 4),
+(26, '17c', 'Owl', 'https://www.youtube.com/embed/7kEjZHKXLDg', 'animal4.jpg', 2),
+(27, '18c', 'The Mango Tree', 'https://www.youtube.com/embed/MV1NNfM7yoY', 'plant1.jpg', 1),
+(28, '17b', 'The Little turtle', 'https://www.youtube.com/embed/abs71ME0jIk', 'animal1.jpg', 2),
+(29, '18a', 'The River', 'https://www.youtube.com/embed/DlQ4zvJymKI', 'plant2.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -98,8 +105,8 @@ CREATE TABLE `level` (
 
 INSERT INTO `level` (`id_level`, `nama_level`) VALUES
 (1, 'admin'),
-(2, 'ortu'),
-(3, 'guru'),
+(2, 'Parent'),
+(3, 'Teacher'),
 (4, 'anak');
 
 -- --------------------------------------------------------
@@ -113,7 +120,8 @@ CREATE TABLE `ongoing` (
   `id_child` int(11) DEFAULT NULL,
   `id_course` int(11) DEFAULT NULL,
   `tgl_mulai` date DEFAULT NULL,
-  `tgl_selesai` date DEFAULT NULL
+  `tgl_selesai` date DEFAULT NULL,
+  `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -150,7 +158,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama_user`, `username`, `email`, `pass_user`, `asal_sekolah`, `id_level`) VALUES
-(1, 'Mutia', 'Mutiaunch', 'Mutia@gmail.com', 'mutia123', NULL, 2);
+(8, 'admin', 'admin', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', '', 1);
 
 --
 -- Indexes for dumped tables
@@ -214,13 +222,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `childs`
 --
 ALTER TABLE `childs`
-  MODIFY `id_child` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_child` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `course`
 --
 ALTER TABLE `course`
-  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_course` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
@@ -238,19 +246,19 @@ ALTER TABLE `level`
 -- AUTO_INCREMENT untuk tabel `ongoing`
 --
 ALTER TABLE `ongoing`
-  MODIFY `id_ongoing` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_ongoing` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT untuk tabel `selesai`
 --
 ALTER TABLE `selesai`
-  MODIFY `id_selesai` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_selesai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
