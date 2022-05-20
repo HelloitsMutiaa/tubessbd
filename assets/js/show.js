@@ -13,19 +13,3 @@ var input = document.getElementById('pwd'),
     }
 
 }
-
-let input = document.getElementById('pass')
-eye = document.getElementById('eye');
-
-eye.onclick = function () {
-
-if (input.type === "password"){
-    input.type = 'text'
-    eye.className = 'fa fa-eye';
-}
-else {
-    input.type = 'password';
-    eye.className = 'fa fa-eye-slash';
-}
-
-}

@@ -13,6 +13,7 @@
     <title>BookR</title>
 </head>
 <body>
+<script src="../assets/js/show.js"></script>
      <section class="sign">
          <form action="" method="POST">
         <h1><span>Login</span></h1> 
@@ -77,7 +78,5 @@
 
     
     ?>
-
-    <script src="../assets/js/show.js"></script>
 </body>
 </html>

@@ -88,20 +88,6 @@
     </nav>
     <section class="home">
         <div class="pict"><img src="../assets/img/pict 1.png" alt=""/></div>
-        <div class="container">
-            <table class="elementscontainer">
-                <tr>
-                    <td>
-                        <input type="text" placeholder="Search" class="search">
-                    </td>
-                    <td>
-                        <a href="#">
-                            <i class="bx bx-search"></i>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-        </div>
     </div>
     
     <div class="images">

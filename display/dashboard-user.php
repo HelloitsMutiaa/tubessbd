@@ -6,6 +6,7 @@
         exit();
     }
     include "../data-kursus/kursus-list.php";
+    include "../includes/function.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,18 +77,22 @@
     <section class="home">
         <div class="pict"><img src="../assets/img/pict 1.png" alt=""/></div>
         <div class="container">
+        <?php if(isset($_GET["cari"])) { ?>
+        <?php $data_kursus = cari($_GET["keyword"]);}?>
+            <form action="" method="GET">
             <table class="elementscontainer">
                 <tr>
                     <td>
-                        <input type="text" placeholder="Search" class="search">
+                        <input type="text" placeholder="Search" class="search" name="keyword">
                     </td>
                     <td>
                         <a href="#">
-                            <i class="bx bx-search"></i>
+                            <button type="submit" class="btn-search" name="cari"><i class="bx bx-search bx-sm"></i></button>
                         </a>
                     </td>
                 </tr>
             </table>
+            </form>
         </div>
     </div>
 
